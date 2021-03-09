@@ -1,0 +1,323 @@
+<template>
+  <div class="hello bg-light">
+
+    <!-- 在此插入Navbar；並用 props讓Navbar元件接index的資料 -->
+
+    <div class="sticky-top">
+      <Index_Navbar :shoppingList='cartList'></Index_Navbar>
+    </div>
+
+
+    <!-- Alert元件 -->
+    <Alert />
+
+    <!-- 讀取效果元件 -->
+    <loading :active.sync="isLoading">
+    </loading>
+
+    <!-- Jumbo大圖 -->
+    <div class="header jumbo-bg bg-cover d-flex align-items-end mb-3">
+      <div class="p-5">
+        <div class="bg-lighter p-3">
+          <p class="h2">我有酒，你有故事嗎?</p>
+          <p class="h5">Do you have any stories?</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+
+        <!-- 產品服務頁面；左邊導覽欄位 -->
+        <div class="col-md-2 mb-2">
+
+          <div class="list-group bg-barMain sticky-top" id="list-tab" role="tablist" style="top:80px">
+            <ul style="list-style: none; padding-inline-start: 0px;">
+              <li>
+                <a @click="getSorted('all')" v-bind:class="{ active: sortedProduct== 'all' }"
+                  class="list-group-item list-group-item-action bg-barMain h5 mb-0 text-center">所有酒品
+                </a>
+              </li>
+              <li>
+                <a @click="getSorted('normal')" v-bind:class="{ active: sortedProduct== 'normal' }"
+                  class="list-group-item list-group-item-action bg-barMain h5 mb-0 text-center">普飲區
+                </a>
+              </li>
+              <li>
+                <a @click="getSorted('recommended')" v-bind:class="{ active: sortedProduct== 'recommended' }"
+                  class="list-group-item list-group-item-action bg-barMain h5 mb-0 text-center">推薦區
+                </a>
+              </li>
+              <li>
+                <a @click="getSorted('rare')" v-bind:class="{ active: sortedProduct== 'rare' }"
+                  class="list-group-item list-group-item-action bg-barMain h5 mb-0 text-center">珍稀區
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- 一個卡片、產品欄位；使用v-for渲染所有產品 -->
+        <div class="col-md-10">
+
+          <div class="row">
+            <div class="col-md-4 mb-4" v-for="item in filterProducts" :key="item.id">
+              <div class="card border shadow-sm">
+                <div style="height: 220px; background-size: cover; background-position: center center"
+                  :style="{backgroundImage: `url(${item.imageUrl})`}">
+                </div>
+                <div class="card-body">
+                  <span class="badge badge-secondary float-right ml-2">{{ item.category }}</span>
+                  <h6 class="card-title" style="height:50px">
+                    <a @click.prevent="toProductDetail(item.id)" href="#" class="text-barMain font-weight-bold">{{ item.title }}</a>
+                  </h6>
+                  <p class="card-text">{{ item.content }}</p>
+                  <div class="d-flex justify-content-between align-items-baseline">
+                    <div class="h6" v-if="!item.price">{{ item.origin_price | currency}} 元</div>
+                    <del class="h6" v-if="item.price">{{ item.origin_price | currency}} 元</del>
+                    <div class="h5 text-success" v-if="item.price">{{ item.price | currency}} 元</div>
+                  </div>
+                </div>
+                <div class="card-footer d-flex">
+                  <button type="button" class="btn btn-outline-secondary btn-sm" @click="getSingleProduct(item.id)">
+                    <i class="fas fa-spinner fa-spin" v-if="status.loadingItem==item.id"></i>
+                    查看更多
+                  </button>
+                  <button type="button" class="btn btn-outline-danger btn-sm ml-auto" @click="addtoCart(item.id)">
+                    <i class="fas fa-spinner fa-spin" v-if="status.loadingItem==item.id"></i>
+                    加到購物車
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- "查看更多"的Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{ product.title }}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div :style="{backgroundImage: `url(${product.imageUrl})`}" style="height: 250px" class="bg-cover"></div>
+
+            <!-- 舊版型使用img方式 (註解掉) -->
+            <!-- <img :src="product.imageUrl" class="img-fluid" alt="productPhoto"> -->
+
+            <blockquote class="blockquote mt-3">
+              <p class="mb-0">{{ product.content }}</p>
+              <footer class="blockquote-footer text-right">{{ product.description }}</footer>
+            </blockquote>
+            <div class="d-flex justify-content-between align-items-baseline">
+              <div class="h4" v-if="!product.price">{{ product.origin_price }} 元</div>
+              <del class="h6" v-if="product.price">原價 {{ product.origin_price }} 元</del>
+              <div class="h4" v-if="product.price">現在只要 {{ product.price }} 元</div>
+            </div>
+            <select name="qty" class="form-control mt-3" v-model="product.Qty">
+              <option value="0" disabled selected>請選擇數量</option>
+              <option :value="num" v-for="num in 6" :key='num'>選{{ num }} {{ product.unit}}</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <div class="text-muted text-nowrap mr-3">
+              小計 <strong>{{ product.Qty * product.price }}</strong> 元
+            </div>
+            <button type="button" class="btn btn-primary" @click="addtoCart(product.id, product.Qty)">
+              <i class="fas fa-spinner fa-spin" v-if="status.loadingItem==product.id"></i>
+              加到購物車
+            </button>
+          </div>
+        </div>
+      </div>>
+    </div>
+
+    <!-- Footer更改為全域插入 -->
+    <!-- <Index_Footer /> -->
+
+
+  </div>
+
+</template>
+
+<script>
+  import Index_Navbar from '../Index_Navbar';
+  import Index_Footer from '../Index_Footer';
+
+  import Alert from '../AlertMessage'; //痾樂
+
+  export default {
+    components: {
+      Index_Navbar,
+      Index_Footer,
+      Alert,
+    },
+
+    data() {
+      return {
+        cartList: {
+          carts: {}
+        },
+
+        sortedProduct: 'all', //控制篩選產品、預設為取所有產品
+
+        products: {}, //所有產品data
+
+        product: {}, //單一筆產品data
+
+        isLoading: false, //全域loading控制
+
+        status: {
+          loadingItem: '', //讀取icon顯示/出現控制
+        },
+
+      }
+    },
+    computed: {
+      filterProducts: function () {
+        var vm = this;
+
+        if (vm.sortedProduct == 'all') {
+          return vm.products
+        }
+
+        if (vm.sortedProduct == 'normal') {
+          return vm.products.filter(function (item) {
+            return item.price < 1500
+          })
+        }
+
+        if (vm.sortedProduct == 'recommended') {
+          return vm.products.filter(function (item) {
+            return item.price > 1500 && item.price < 15000
+          })
+        }
+
+        if (vm.sortedProduct == 'rare') {
+          return vm.products.filter(function (item) {
+            return item.price > 15000
+          })
+        }
+
+
+        // return vm.products.filter(function(item){
+        //   return item.price > 1500;
+        // })
+      },
+    },
+    methods: {
+
+      // 取得所有產品列表
+      getProducts() {
+        const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
+        // const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/products/all`;
+        // const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/products`;
+        // const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products?page=${page}`;
+        const vm = this;
+
+        vm.isLoading = true; //打開全域讀取
+
+        this.$http.get(api).then((response) => {
+
+          console.log('產品列表:', response.data);
+          vm.isLoading = false; // 結束全域讀取
+          vm.products = response.data.products;
+
+        })
+      },
+      //取得單一筆產品
+      getSingleProduct(id) {
+
+        this.status.loadingItem = `${id}`; //讀取出現
+
+        const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
+        const vm = this;
+
+        this.$http.get(api).then((response) => {
+          console.log('單一筆產品', response.data);
+          vm.product = response.data.product;
+
+          vm.status.loadingItem = '' //讀取消失
+          $('#productModal').modal('show');
+
+        })
+      },
+      // 跳轉單一筆產品；取單產品id、跳轉取路由上id；串Api。
+      toProductDetail(id){
+        const vm = this;
+        vm.$router.push(`/whiskey/${id}`);
+      },
+
+      // 加入購物車
+      addtoCart(id, qty = 1) {
+        const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+        const vm = this;
+        this.status.loadingItem = `${id}`; //讀取出現
+
+        // 加入購物車所需丟入的資料結構。
+        const addingItem = {
+          product_id: id,
+          qty: qty,
+        };
+
+        this.$http.post(api, { data: addingItem }).then((response) => {
+          console.log(response.data);
+
+          vm.status.loadingItem = '' //讀取消失
+
+          $('#productModal').modal('hide')
+          this.$bus.$emit('message:push', '已加入購物車', 'success')
+
+        })
+
+      },
+      // 取得購物車清單
+      getCart() {
+        const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+        const vm = this;
+
+        this.$http.get(api).then((response) => {
+          vm.cartList = response.data.data;
+          console.log('購物車清單', response.data.data);
+        })
+      },
+
+      // 點擊、控制分類、套用到 filter
+      getSorted(sort) {
+        this.sortedProduct = `${sort}`;
+      },
+    },
+
+    created() {
+      this.getCart();
+      this.getProducts();
+
+      // event bus的使用方法；、載入元件後；可將這段用於任何要顯示的地方。
+      this.$bus.$emit('message:push', 'HelloWorld', 'info')
+    }
+
+
+  }
+
+</script>
+
+<style scoped>
+  .jumbo-bg {
+    background-image: url('../../assets/image/products_jumbo.jpg');
+    height: 200px;
+  }
+
+  .bg-lighter {
+    background-color: rgb(255, 255, 255, 0.3)
+  }
+</style>
