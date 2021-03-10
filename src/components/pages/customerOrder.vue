@@ -22,11 +22,20 @@
         </div>
       </div>
     </div>
-    
-    <!-- 訂購產品與訂購人訊息 -->
-    <section class="d-md-none">
+
+    <!-- 訂購產品與訂購人訊息；手機螢幕-->
+    <section class="d-md-none container">
+
+      <div clsss="d-flex justify-content-center">
+
+        <div class="h5 text-center">購物清單</div>
+        <hr class="bg-barMain" style="width: 70px; height:2px ">
+
+      </div>
+
       <div class="my-5 row justify-content-center">
-        <form class="col-md-6" @submit.prevent="orderToPay">
+        <!-- <div class="p-3 h5">購物清單</div> -->
+        <form class="" @submit.prevent="orderToPay">
           <table class="table">
             <thead>
               <th>品名</th>
@@ -53,7 +62,14 @@
               </tr>
             </tfoot>
           </table>
-  
+
+          <div clsss="d-flex justify-content-center">
+
+            <div class="h5 text-center">訂購人訊息</div>
+            <hr class="bg-barMain" style="width: 70px; height:2px ">
+
+          </div>
+
           <table class="table">
             <tbody>
               <tr>
@@ -73,6 +89,10 @@
                 <td>{{ order.user.address }}</td>
               </tr>
               <tr>
+                <th width="">付款金額</th>
+                <td>{{ order.total | currency}} </td>
+              </tr>
+              <tr>
                 <th>付款狀態</th>
                 <td>
                   <span v-if="!order.is_paid">尚未付款</span>
@@ -90,12 +110,15 @@
       </div>
     </section>
 
+
     <section>
       <div class="container">
         <div class="row">
-          <div class="col-md-6 bg-barMain pt-md-5 mb-md-3 d-flex flex-column">
 
-            <div class="mb-auto">
+          <!-- 信用卡付款欄位 -->
+          <div class="col-md-6 d-flex flex-column">
+
+            <div class="bg-barMain ">
               <form action="" class="p-3 text-white">
                 <div class="form-row">
                   <div class="col-6 col-md-6">
@@ -157,17 +180,16 @@
               </form>
             </div>
 
-            <div class="row" @click="orderToPay"> 
-              <div class="bg-warning w-100 text-center text-white btn" v-if="order.is_paid === false">
-               <span class="p-3 h3">確認付款</span>
+            <div class="" @click="orderToPay">
+              <div class="bg-success w-100 text-center text-white btn" v-if="order.is_paid === false">
+                <span class="p-3 h4">確認付款</span>
               </div>
             </div>
 
           </div>
 
-
+          <!-- 訂購訊息 -->
           <div class="d-none d-md-block col-md-6">
-            <!-- 訂購人訊息 -->
             <div class="bg-light text-barSecond border mb-3">
               <div class="p-2 text-center border-bottom border-barMain bg-light">
                 <h2>訂購人訊息</h2>
@@ -183,12 +205,16 @@
                     <td>{{ order.user.name }}</td>
                   </tr>
                   <tr>
-                    <th>收件人電話</th>
+                    <th>電話</th>
                     <td>{{ order.user.tel }}</td>
                   </tr>
                   <tr>
-                    <th>收件人地址</th>
+                    <th>地址</th>
                     <td>{{ order.user.address }}</td>
+                  </tr>
+                  <tr>
+                    <th width="">付款金額</th>
+                    <td>{{ order.total | currency}} </td>
                   </tr>
                   <tr>
                     <th>付款狀態</th>
@@ -208,11 +234,15 @@
               </div>
 
               <div class="row p-1 border-bottom" v-for="item in order.products" :key="item.id">
+
+                <!-- Photo -->
                 <div class="col-2">
                   <div class="bg-cover h-100" :style="{backgroundImage: `url(${item.product.imageUrl})`}">
                   </div>
                 </div>
-                <div class="col-8 py-3">
+
+                <!-- title -->
+                <div class="col-5 py-3">
                   <div>
                     <span class="h5">{{item.product.title}} ({{item.qty}})</span>
                   </div>
@@ -220,16 +250,26 @@
                     <span>{{item.product.price | currency}}</span>
                   </div>
                 </div>
-                <div class="col-2 py-3">
+
+                <!-- Price -->
+                <div class="col-3 py-3">
+
                   <div>
-                    <span class="h5">小計</span>
-                  </div>
-                  <div>
+                    <span class="h6">小計</span>
                     <span>{{item.total | currency}} </span>
-                    <br>
-                    <span class="text-success" v-if="item.coupon">優惠價: {{item.final_total | currency}} </span>
+                  </div>
+
+                  <div>
+                    <span class="text-success h6" v-if="item.coupon">優惠價: {{item.final_total | currency}} </span>
                   </div>
                 </div>
+
+                <!-- <div class="col-2 py-3">
+                  <div class="d-flex">
+                    <span class="text-success h6" v-if="item.coupon">優惠價: {{item.final_total | currency}} </span>
+                    <span>{{item.total | currency}} </span>
+                  </div>
+                </div> -->
               </div>
               <div class="p-2 d-flex justify-content-end align-items-center h3">
                 <span>

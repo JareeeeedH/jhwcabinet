@@ -54,7 +54,7 @@
                 <div class="row no-gutters justify-content-between">
 
                     <router-link style="height: 320px; position: relative; overflow:hidden; text-decoration:none;"
-                        class="col-4 d-flex justify-content-center align-items-center" to="/services">
+                        class="col-4 d-flex justify-content-center align-items-center" to="/whiskey">
 
                         <div class="services_photo_1 serviceRec bg-cover">
                         </div>
@@ -64,7 +64,7 @@
                     </router-link>
 
                     <router-link style="height: 320px; position: relative; overflow:hidden; text-decoration:none"
-                        class="col-4 d-flex justify-content-center align-items-center" to="/services">
+                        class="col-4 d-flex justify-content-center align-items-center" to="/travel">
 
                         <div class="services_photo_2 serviceRec bg-cover">
                         </div>
@@ -74,7 +74,7 @@
                     </router-link>
 
                     <router-link style="height: 320px; position: relative; overflow:hidden; text-decoration:none"
-                        class="col-4 d-flex justify-content-center align-items-center" to="/services">
+                        class="col-4 d-flex justify-content-center align-items-center" to="/party">
 
                         <div class="services_photo_3 serviceRec bg-cover">
                         </div>
