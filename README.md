@@ -5,4 +5,4 @@
 
 #歡迎參觀與詢問。
 
-#https://jareeeeedh.github.io/jhwcabinet/
+#https://jareeeeedh.github.io/jhwcabinet/#/index
