@@ -104,56 +104,6 @@
 
       </div>
 
-      <section class="bg-barMain py-5">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-md-5 d-flex align-items-center justify-content-center mb-3">
-              <img src="../../assets/image/logo_1.jpg" alt="logo" style="width:40px;">
-              <span class="h4 text-white mb-0 mx-3">訂閱你我酒精的故事</span>
-            </div>
-            <div class="col-md-5">
-              <div class="d-flex justify-content-between align-items-center bg-light">
-                <label for="subicon" class="px-3 mb-0 text-success d-flex align-items-center"><i
-                    class="far fa-envelope-open fa-2x"></i></label>
-                <input id="subicon" type="text;" style="border:none; outline:none; background-color: transparent;"
-                  class="w-100 p-2">
-                <button class="btn btn-success rounded-0 py-2"><i class="fas fa-arrow-right"></i></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <footer class="bg-light p-2">
-        <div class="container mb-3">
-          <div class="row">
-            <div class="col-8">
-              <div class="row">
-                <div class="h2 col-12 mb-3 mb-5 mb-md-7">
-                  Jared's Cabinet
-                </div>
-                <div class="col-12 d-flex flex-column mb-3">
-                  <span>Tel: 07-571-8168</span>
-                  <span>Email: Rudrunking@gmail.com</span>
-                  <span>Address: ChiJin Dist, KH City,Taiwan</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 d-none d-md-block writting-md-vertical spacing h2">
-              <div>今天是個...</div>
-              <div> 買醉的日子</div>
-            </div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6"><i class="fab fa-facebook fa-2x mr-1"></i><i class="fab fa-instagram fa-2x"></i></div>
-            <div class="col-md-6">@2021 Jared's Cabinet All rights Reserved.</div>
-          </div>
-        </div>
-      </footer>
-
-
     </body>
   </div>
 </template>

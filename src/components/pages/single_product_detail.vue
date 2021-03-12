@@ -1,9 +1,10 @@
 <template>
   <div class="hello bg-light">
 
+      <!-- Alert元件 -->
+      <Alert />
 
     <div class="container">
-
 
       <!-- 麵包屑-->
       <nav aria-label="breadcrumb">
@@ -14,65 +15,79 @@
           <li class="breadcrumb-item">
             <router-link to="/whiskey">Whiskey</router-link>
           </li>
-          <li class="breadcrumb-item active">Ardbeg10</li>
+          <li class="breadcrumb-item active">{{product.product.title}}</li>
         </ol>
       </nav>
 
       <div class="row mb-5">
+
         <div class="col-md-4">
-          <div class="sticky-top" style='top:20px'>
-            <div>
-              <h1 class="mb-3">Ardbeg 10</h1>
-              <div class="d-flex justify-content-end align-items-end">
-                <span><del>售價$1,250</del></span>
-                <div class="h3 text-danger ml-auto mb-0">
-                  <small>特價</small>
-                  <strong>1,050</strong>
+          <div class="" style='top:20px'>
+
+            <div class="mb-3">
+
+              <h3 class="mb-3">{{ product.product.title}}</h3>
+
+              <div class="d-flex justify-content-between my-3">
+                <h6 class="mb-0">{{product.product.description}}</h6>
+                <h6 style="line-height:1" class="badge badge-success mb-0">{{product.product.category}}</h6>
+              </div>
+              <hr>
+
+
+              <!-- 手機顯示: 產品小圖 -->
+              <div class="bg-cover d-md-none my-3" style="height: 150px"
+                :style="{backgroundImage: `url(${product.product.imageUrl})`}">
+              </div>
+
+              <div class="d-flex justify-content-between my-3">
+
+                <div class="d-flex border">
+                  <button class="btn btn-sm border" @click="qtyRevise(-1)" :disabled="qty == 1">
+
+                    <i class="fas fa-minus"></i>
+
+                  </button>
+
+                  <input class="border text-center" style="width: 40px" type="text" v-model="qty">
+
+                  <button class="btn btn-sm border" @click="qtyRevise(+1)"> <i class="fas fa-plus"></i> </button>
                 </div>
-              </div>
-              <hr> 單位:
-              <div class="btn-group btn-group-toggle btn-group-sm" data-toggle="buttons">
-                <label class="btn btn-outline-secondary disabled">
-                  <input type="radio" name="options" id="option1" autocomplete="off"> 杯
-                </label>
-                <label class="btn btn-outline-secondary">
-                  <input type="radio" name="options" id="option2" autocomplete="off"> 瓶
-                </label>
-                <label class="btn btn-outline-secondary">
-                  <input type="radio" name="options" id="option3" autocomplete="off"> 打
-                </label>
+
+                <div class="d-flex">
+                  <span><del>{{ product.product.origin_price|currency}}</del></span>
+                  <span class="h3 text-success">{{ product.product.price|currency}}</span>
+                </div>
+
               </div>
 
-              <div class="input-group input-group-sm mt-3">
-                <select class="form-control mr-2">
-                  <option selected value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-                <a href="#" class="btn btn-sm btn-primary">加入購物車</a>
-              </div>
+              <hr>
+              <button class="btn btn-sm btn-barMain" @click="addtoCart(product.product.id, qty)">加入購物車</button>
+
+            </div>
+
+          </div>
+
+          <div class="card my-5">
+            <!-- <div class="card-header">產品描述</div> -->
+            <div class="text-barnaim">
+              <!-- <h5 class="card-title">Primary card title</h5> -->
+              <p class="p-1 h5 textContent card-text text-barMain">{{product.product.content}}</p>
             </div>
           </div>
         </div>
+
+
         <div class="col-md-8">
-          <div class="d-flex flex-column">
-            <div class="h1">{{product.product.title}}</div>
-
-            <p>
-              {{product.product.content}}
-            </p>
-
-            <strong class="h3 text-center">
-              {{product.product.description}}
-            </strong>
-            <div class="bg-cover" style="height: 550px" :style="{backgroundImage: `url(${product.product.imageUrl})`}">
-
-            </div>
-
+          <div class="bg-cover d-none d-md-block" style="height: 700px"
+            :style="{backgroundImage: `url(${product.product.imageUrl})`}">
           </div>
         </div>
+
       </div>
+
     </div>
+  </div>
 
 
 
@@ -81,16 +96,25 @@
 </template>
 
 <script>
+  import Alert from '../AlertMessage'; //痾樂
 
   export default {
     components: {
+      Alert,
 
     },
 
     data() {
       return {
-        product: {}, //單一筆產品data
+        product: { //單一筆產品data
+          product: {}
+        },
         nowID: '',
+
+        qty: '1',
+
+
+
       }
     },
 
@@ -113,15 +137,21 @@
 
         })
       },
+      // 數量增減
 
+      qtyRevise(change) {
 
+        this.qty = Number(this.qty) + Number(change)
+
+      },
 
 
       // 加入購物車
       addtoCart(id, qty = 1) {
         const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
         const vm = this;
-        this.status.loadingItem = `${id}`; //讀取出現
+        // this.status.loadingItem = `${id}`; 
+        //讀取出現
 
         // 加入購物車所需丟入的資料結構。
         const addingItem = {
@@ -132,7 +162,8 @@
         this.$http.post(api, { data: addingItem }).then((response) => {
           console.log(response.data);
 
-          vm.status.loadingItem = '' //讀取消失
+          // vm.status.loadingItem = '' 
+          //讀取消失
 
           $('#productModal').modal('hide')
           this.$bus.$emit('message:push', '已加入購物車', 'success')
@@ -152,5 +183,9 @@
 </script>
 
 <style scoped>
-
+  /* 調整卡片內容文字 */
+  .textContent {
+    letter-spacing: 3px;
+    line-height: 35px;
+  }
 </style>

@@ -64,15 +64,18 @@
           <div class="row">
             <div class="col-md-4 mb-4" v-for="item in filterProducts" :key="item.id">
               <div class="card border shadow-sm">
-                <div style="height: 220px; background-size: cover; background-position: center center"
-                  :style="{backgroundImage: `url(${item.imageUrl})`}">
+                <div 
+                  @click.prevent="toProductDetail(item.id)"
+                  style="height: 220px; background-size: cover; background-position: center center; cursor:pointer"
+                    :style="{backgroundImage: `url(${item.imageUrl})`}">
                 </div>
                 <div class="card-body">
                   <span class="badge badge-secondary float-right ml-2">{{ item.category }}</span>
                   <h6 class="card-title" style="height:50px">
-                    <a @click.prevent="toProductDetail(item.id)" href="#" class="text-barMain font-weight-bold">{{ item.title }}</a>
+                    <a @click.prevent="toProductDetail(item.id)" href="#" class="text-barMain font-weight-bold">{{
+                      item.title }}</a>
                   </h6>
-                  <p class="card-text">{{ item.content }}</p>
+                  <p class="card-text">{{ item.description }}</p>
                   <div class="d-flex justify-content-between align-items-baseline">
                     <div class="h6" v-if="!item.price">{{ item.origin_price | currency}} 元</div>
                     <del class="h6" v-if="item.price">{{ item.origin_price | currency}} 元</del>
@@ -253,7 +256,7 @@
         })
       },
       // 跳轉單一筆產品；取單產品id、跳轉取路由上id；串Api。
-      toProductDetail(id){
+      toProductDetail(id) {
         const vm = this;
         vm.$router.push(`/whiskey/${id}`);
       },
