@@ -22,7 +22,7 @@
 
                     <th scope="row">{{item.num}}</th>
 
-                    <td>{{item.create_at}}</td>
+                    <td>{{item.create_at | date}}</td>
 
                     <td>
                         <ul>
@@ -33,13 +33,13 @@
                     </td>
 
                     <td>
-                       <ul>
-                        <li v-for='each_User in item.user'>
-                            {{each_User}}
-                        </li>
-                       </ul>
+                        <ul>
+                            <li v-for='each_User in item.user'>
+                                {{each_User}}
+                            </li>
+                        </ul>
                     </td>
-                    
+
                     <td class="text-center">
                         <span class="text-success" v-if="item.is_paid == true">是</span>
                         <span v-else>否</span>
@@ -53,11 +53,29 @@
             </tbody>
         </table>
 
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
 
-        <!-- Pagination分頁元件； -->
-        <!-- 使用:pagi_data接收當前的pagination資料 -->
-        <!-- 使用emit；內層觸發外層getProducts -->
-        <!-- <Pagination :pagi_data='pagination' v-on:emit_function="getProducts"></Pagination> -->
+                <li class="page-item">
+                    <a class="page-link" href="#" @click="getOrders(pagination.current_page - 1)">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+
+                <li :class="{active: page==pagination.current_page}" class="page-item" v-for="(page, index) in pagination.total_pages" :key=page>
+                    <a class="page-link" href="#" @click="getOrders(page)">{{page}}</a>
+                </li>
+               
+                <li class="page-item" @click="getOrders(pagination.current_page + 1)">
+                    <a class="page-link" href="#">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
 
 
     </div>
@@ -69,18 +87,15 @@
     import Pagination from '../Pagination';
 
     export default {
-        components: {
-            Pagination,
-        },
         data() {
             return {
-                orders:{},
+                orders: {},
                 isLoading: false, //全域loading
                 pagination: {},
             }
         },
         methods: {
-            getOrders(page=1) {
+            getOrders(page = 1) {
                 const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/orders?page=${page}}`;
                 const vm = this;
 
@@ -92,7 +107,7 @@
                     vm.orders = response.data.orders;
                     vm.isLoading = false; // 讀取效果控制 (資料完成；不顯示讀取)
 
-                    // vm.pagination = response.data.pagination;
+                    vm.pagination = response.data.pagination;
 
                 })
 

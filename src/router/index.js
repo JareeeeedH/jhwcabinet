@@ -40,13 +40,13 @@ Vue.use(Router)
 //匯出給 main.js使用
 export default new Router({
   routes: [
-    // 無效跳轉先關閉
-    // {
-    //   path: '*',
-    //   redirect: '/index'
-    // },
+    // 無效跳轉
     {
-      path: '/index',
+      path: '*',
+      redirect: '/home'
+    },
+    {
+      path: '/home',
       name: 'HelloWorld/首頁',
       component: HelloWorld,
     },

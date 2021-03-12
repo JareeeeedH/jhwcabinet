@@ -54,3 +54,12 @@ background-color: rgba(0, 0, 0, 0.5)
 body {
     font-family: 'Noto Sans TC', sans-serif;
 }
+
+
+// 控制dropDown寬度
+@media (min-width: 768px) {
+  .dropdown-md {
+    min-width: 600px;
+  }
+
+}

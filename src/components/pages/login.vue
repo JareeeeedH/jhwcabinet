@@ -1,8 +1,8 @@
 <template>
   <div>
     <form class="form-signin" @submit.prevent="signin">
-      <img class="mb-4" src="@/assets/image/jia.jpg" alt="" width="" height="">
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <!-- <img class="mb-4" src="@/assets/image/jia.jpg" alt="" width="" height=""> -->
+      <h1 class="h3 mb-3 font-weight-normal text-center">管理登入</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
       <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus v-model="user.username">
       <label for="inputPassword" class="sr-only">Password</label>
@@ -12,9 +12,9 @@
           <input type="checkbox" value="remember-me"> Remember me
         </label>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">登入後台</button>
-      <router-link class="btn btn-lg btn-info btn-block" type="submit" to="/index">前往首頁</router-link>
-      <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+      <button class="btn btn-lg btn-barMain btn-block" type="submit">登台</button>
+      <router-link class="btn btn-lg btn-barMain btn-block" type="submit" to="/index">前往首頁</router-link>
+      <p class="mt-5 mb-3 text-muted">&copy; 2021 Jared's Whiskey Cabinet</p>
     </form>
   </div>
 </template>

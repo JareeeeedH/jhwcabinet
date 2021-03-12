@@ -3,10 +3,6 @@
 
     <div class="party">
 
-      <router-link class="h1" to="/index">
-        返回首頁
-      </router-link>
-      
       <h1>Party Services</h1>
 
       <div class="h5">

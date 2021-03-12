@@ -2,15 +2,15 @@
     <div class="hello">
 
         <!-- 首頁NavBar元件 -->
-        <Index_Navbar :shoppingList='cartList'></Index_Navbar>
+        <!-- <Index_Navbar :shoppingList='cartList'></Index_Navbar> -->
 
         <!-- 痾樂 -->
-        <Alert/>
+        <Alert />
 
 
 
         <!-- 首頁上方大圖示 -->
-        <section class="container-fluid">
+        <section class="container-fluid mb-3">
             <div class="row index_jumbo_image bg-cover">
                 <div class="d-flex align-items-end">
                     <div class="p-7">
@@ -41,8 +41,6 @@
                 </div>
             </div>
         </section>
-
-        <hr>
 
         <!-- 服務區 -->
         <section class="mb-5">
@@ -82,7 +80,6 @@
                         <span class="h2 text-white writting-vertical" style="z-index: 1;">派對</span>
 
                     </router-link>
-
 
                 </div>
 
@@ -133,19 +130,19 @@
         </section>
 
         <!-- 本周專欄-->
-        <section class="mb-3 bg-light">
+        <section class="mb-5 bg-light">
             <div class="container">
 
                 <div class="row justify-content-center">
-                    <h3 class="text-barMain font-weight-bold">本週專欄</h3>
+                    <h3 class="text-barMain font-weight-bold p-3">本週專欄</h3>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-3 paper_photo bg-cover" style="min-height: 200px">
+                    <div class="col-md-4 paper_photo bg-cover" style="min-height: 200px">
 
                     </div>
 
-                    <div class="col-md-9">
+                    <div class="col-md-8">
 
 
                         <h5 class="text-barMain font-weight-bold p-3">你知道嗎? 威士忌投資成長驚人，十年增值六倍 威士忌投資成長驚人!</h5>
@@ -160,21 +157,21 @@
                         <h5 class="text-barMain font-weight-bold p-3">投資珍稀威士忌要素</h5>
                         <ul>
                             <li class="p-1">
-                                知名品牌：
-                                選擇知名酒廠推出的酒款，大型酒廠品質通常較為穩定，且更容易擁有死忠的固定藏家。
+                                <span class="font-weight-bold">知名品牌:</span>
+                                <p>選擇知名酒廠推出的酒款，大型酒廠品質通常較為穩定，且更容易擁有死忠的固定藏家。</p>
 
                             </li>
                             <li class="p-1">
-                                稀有性：
-                                年份越高的威士忌越少見，可選擇陳桶年份為25年以上，每批產量低於4,000瓶更好，而限量版的威士忌更是藏家追逐的標的。
+                                <span class="font-weight-bold">稀有性:</span>
+                                <p>年份越高的威士忌越少見，可選擇陳桶年份為25年以上，每批產量低於4,000瓶更好，而限量版的威士忌更是藏家追逐的標的。</p>
                             </li>
                             <li class="p-1">
-                                口感佳：
-                                頂級藏家蒐羅後，總有開瓶品酩的一天，好喝的威士忌絕對是投資一大重點，國內外知名品酒人評論是參考重點。
+                                <span class="font-weight-bold">口感佳:</span>
+                                <p>頂級藏家蒐羅後，總有開瓶品酩的一天，好喝的威士忌絕對是投資一大重點，國內外知名品酒人評論是參考重點。</p>
                             </li>
                             <li class="p-1">
-                                故事性：
-                                酒款如具歷史意義或話題性的，更能展現其獨特性，也容易有較佳的市場表現。
+                                <span class="font-weight-bold">故事性:</span>
+                                <p>酒款如具歷史意義或話題性的，更能展現其獨特性，也容易有較佳的市場表現。</p>
                             </li>
                         </ul>
 
@@ -184,43 +181,8 @@
 
         </section>
 
-
-        <!-- <section class="mb-md-7">
-
-            <div class="container py-5 d-md-none">
-                <div class="row flex-column align-items-center h2 text-barMain font-weight-bold">
-                    <div>我有酒...</div>
-                    <div>你有故事嗎?</div>
-                </div>
-            </div>
-
-            <div class="container-fluid bg-light">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 break-md-y">
-                            <div class="bg-cover break-md-x h-100 index_intro_photo_1" style="min-height: 250px">
-
-                            </div>
-                        </div>
-                        <div class="col-md-6 py-3 d-flex vertical-content" style="max-height: 420px">
-                            <div class="writting-md-vertical p-3 vertical-content">
-                                <p>在威士忌製作的一開始，必須先讓大麥發芽，在發芽的過程中會損失一些酒精，而讓大麥停止發芽的方法就是烘烤大麥。</p>
-                                <p>有泥煤味的威士忌是在烘烤的過程中，燃燒泥煤的熱氣直接與大麥接觸，就像燻魚或燻肉一樣，泥煤的煙燻味直接進入烘乾的大麥中，讓最後製成的威士忌更有泥煤的風味。</p>
-                            </div>
-                            <div class="writting-md-vertical break-md-y">
-                                <h2 class="d-none d-md-block font_2">
-                                    什麼是「泥煤味」？
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-
-
         <!-- Quote -->
-        <section>
+        <section class="mb-5">
             <div class="container d-md-none">
                 <div
                     class="row justify-content-center flex-column align-items-center h3 py-3 text-barMain font-weight-bold">
@@ -252,13 +214,12 @@
                                     <i class="far fa-heart"></i>
                                 </div>
                             </div>
-                            <div class="text-barMain font-weight-bold">
-                                <div class="d-flex text-center align-items-center" style="min-height: 80px">
-                                    <div class="col border-right">Glendronach 21y</div>
-                                    <strong class="col "> NT$4,050</strong>
-                                </div>
+                            <div style='min-height: 80px;'
+                                class="font-weight-bold d-flex text-center align-items-center">
+                                <div class="col p-3 border-right">Glendronach 21y</div>
+                                <div class="col p-3"> NT$4,050</div>
                             </div>
-                            <button class="h5 border-0 card-footer text-center bg-barSecond text-white"
+                            <button class="h6 mb-0 border-0 card-footer text-center bg-barSecond text-white"
                                 @click="addtoCart('-MUPNXzkaAkFFuTo3SRu')">
                                 加入購物車
                             </button>
@@ -274,13 +235,12 @@
                                     <i class="far fa-heart"></i>
                                 </div>
                             </div>
-                            <div class="text-barMain font-weight-bold">
-                                <div class="d-flex text-center align-items-center" style="min-height: 80px">
-                                    <div class="col border-right">Aberlour A'bunadh</div>
-                                    <strong class="col "> NT$1,600</strong>
-                                </div>
+                            <div style='min-height: 80px;'
+                                class="font-weight-bold d-flex text-center align-items-center">
+                                <div class="col p-3 border-right">Aberlour A'bunadh</div>
+                                <div class="col p-3"> NT$1,600</div>
                             </div>
-                            <button class="h5 border-0 card-footer text-center bg-barSecond text-white"
+                            <button class="h6 mb-0 border-0 card-footer text-center bg-barSecond text-white"
                                 @click="addtoCart('-MUPP9eGnzcED9Bo-sho')">
                                 加入購物車
                             </button>
@@ -296,13 +256,12 @@
                                     <i class="far fa-heart"></i>
                                 </div>
                             </div>
-                            <div class="text-barMain font-weight-bold">
-                                <div class="d-flex text-center align-items-center" style="min-height: 80px">
-                                    <div class="col border-right">GLENDRONACH Kingsman Edition</div>
-                                    <strong class="col "> NT$45,000</strong>
-                                </div>
+                            <div style='min-height: 80px;'
+                                class="font-weight-bold d-flex text-center align-items-center">
+                                <div class="col p-3 border-right">GLENDRONACH Kingsman Edition</div>
+                                <div class="col p-3"> NT$45,000</div>
                             </div>
-                            <button class="h5 border-0 card-footer text-center bg-barSecond text-white"
+                            <button class="h6 mb-0 border-0 card-footer text-center bg-barSecond text-white"
                                 @click="addtoCart('-MUDP2aSTsY5UQ1YGDbz')">
                                 加入購物車
                             </button>
@@ -319,27 +278,28 @@
 </template>
 
 <script>
-
-    import Index_Navbar from './Index_Navbar';
+    // 上下bar以全域載入
+    // import Index_Navbar from './Index_Navbar';
     // import Index_Footer from './Index_Footer';
     import Alert from './AlertMessage';// Alert Message
 
     export default {
         name: 'index',
         components: {
-            Index_Navbar,
+            // Index_Navbar,
             // Index_Footer,
             Alert
         },
-        data() {
-            return {
-                cartList: {
-                    carts: {}
-                },
+        // data() {
+        //     return {
+        //         cartList: {
+        //             carts: {}
+        //         },
 
-            }
-        },
+        //     }
+        // },
         methods: {
+            // 登出
             signout() {
                 const api = `${process.env.APIPATH}/logout`;
                 const vm = this;
@@ -350,6 +310,7 @@
                 })
 
             },
+            // 加入購物車
             addtoCart(id, qty = 1) {
                 const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
                 const vm = this;
@@ -368,6 +329,7 @@
                     this.$bus.$emit('message:push', '已加入購物車', 'success')
                 })
             },
+            // 取購物車列表
             getCart() {
                 const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
                 const vm = this;
@@ -382,7 +344,7 @@
         },
 
         created() {
-            this.getCart();
+            // this.getCart();
         },
     }
 
@@ -391,7 +353,7 @@
 
 <style lang="scss">
     .index_jumbo_image {
-        height: 680px;
+        height: 720px;
         background-image: url('../assets/image/index_jumbo.jpg');
 
     }
@@ -426,5 +388,4 @@
     }
 
 
-    /* @import "../assets/helpers/index_style.scss"; */
 </style>

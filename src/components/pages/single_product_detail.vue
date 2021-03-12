@@ -1,8 +1,8 @@
 <template>
   <div class="hello bg-light">
 
-      <!-- Alert元件 -->
-      <Alert />
+    <!-- Alert元件 -->
+    <Alert />
 
     <div class="container">
 
@@ -21,50 +21,47 @@
 
       <div class="row mb-5">
 
-        <div class="col-md-4">
-          <div class="" style='top:20px'>
+        <div class="col-md-4" style='top:20px'>
 
-            <div class="mb-3">
+          <div class="mb-3">
 
-              <h3 class="mb-3">{{ product.product.title}}</h3>
+            <h3 class="mb-3">{{ product.product.title}}</h3>
 
-              <div class="d-flex justify-content-between my-3">
-                <h6 class="mb-0">{{product.product.description}}</h6>
-                <h6 style="line-height:1" class="badge badge-success mb-0">{{product.product.category}}</h6>
-              </div>
-              <hr>
+            <div class="d-flex justify-content-between my-3">
+              <h6 class="mb-0">{{product.product.description}}</h6>
+              <h6 style="line-height:1" class="badge badge-secondary mb-0">{{product.product.category}}</h6>
+            </div>
+            <hr>
 
 
-              <!-- 手機顯示: 產品小圖 -->
-              <div class="bg-cover d-md-none my-3" style="height: 150px"
-                :style="{backgroundImage: `url(${product.product.imageUrl})`}">
-              </div>
+            <!-- 手機顯示: 產品小圖 -->
+            <div class="bg-cover d-md-none my-3" style="height: 150px"
+              :style="{backgroundImage: `url(${product.product.imageUrl})`}">
+            </div>
 
-              <div class="d-flex justify-content-between my-3">
+            <div class="d-flex justify-content-between my-3">
 
-                <div class="d-flex border">
-                  <button class="btn btn-sm border" @click="qtyRevise(-1)" :disabled="qty == 1">
+              <div class="d-flex border">
+                <button class="btn btn-sm border" @click="qtyRevise(-1)" :disabled="qty == 1">
 
-                    <i class="fas fa-minus"></i>
+                  <i class="fas fa-minus"></i>
 
-                  </button>
+                </button>
 
-                  <input class="border text-center" style="width: 40px" type="text" v-model="qty">
+                <input class="border text-center" style="width: 40px" type="text" v-model="qty">
 
-                  <button class="btn btn-sm border" @click="qtyRevise(+1)"> <i class="fas fa-plus"></i> </button>
-                </div>
-
-                <div class="d-flex">
-                  <span><del>{{ product.product.origin_price|currency}}</del></span>
-                  <span class="h3 text-success">{{ product.product.price|currency}}</span>
-                </div>
-
+                <button class="btn btn-sm border" @click="qtyRevise(+1)"> <i class="fas fa-plus"></i> </button>
               </div>
 
-              <hr>
-              <button class="btn btn-sm btn-barMain" @click="addtoCart(product.product.id, qty)">加入購物車</button>
+              <div class="d-flex">
+                <span><del>{{ product.product.origin_price|currency}}</del></span>
+                <span class="h3 text-success">{{ product.product.price * qty |currency}}</span>
+              </div>
 
             </div>
+
+            <hr>
+            <button class="btn btn-sm btn-barMain" @click="addtoCart(product.product.id, qty)">加入購物車</button>
 
           </div>
 

@@ -7,18 +7,20 @@
         <nav class="navbar navbar-expand-md navbar-info">
 
           <!-- Logo -->
-          <router-link class="navbar-brand shadow-none bg-transparent mr-auto" to="/index">
+          <router-link class="navbar-brand shadow-none bg-transparent mr-auto" to="/home">
             <span class="h3 px-2 mb-0 text-white font_2">傑瑞酒業</span>
           </router-link>
 
-          <!-- 購物車icon -->
+          <!-- 購物車icon& dropDown-->
           <div class="dropdown order-md-1 mx-3">
+
             <button style="cursor:pointer" class="btn btn-cart text-white dropdown-toggle" type="button"
               id="dropdownMenuButton" data-toggle="dropdown">
               <i class="fas fa-wine-bottle fa-2x abs"></i>
               <span class="badge badge-danger">{{shoppingList.carts.length}}</span>
             </button>
-            <div class="dropdown-menu dropdown-menu-right" style="min-width:550px" aria-labelledby="dropdownMenuButton">
+
+            <div class="dropdown-menu dropdown-menu-right dropdown-md">
               <table class="table">
                 <thead>
                   <tr>
@@ -31,7 +33,10 @@
                 </thead>
                 <tbody>
                   <tr v-for="(item,index) in shoppingList.carts">
-                    <td scope="row"><i class="fas fa-trash-alt"></i></td>
+                    <td scope="row">
+                      <i class="fas fa-trash-alt"></i>
+                    </td>
+
                     <td>{{index+1}}</td>
                     <td class="font-weight-bold">{{item.product.title}}</td>
                     <td>{{item.qty}}/{{item.product.unit}}</td>
@@ -61,10 +66,11 @@
           <!-- menu收合 -->
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-            <div class="ml-auto">
+            <!--預設Navbar與靠左顯示-->
+            <div class="ml-auto d-none d-md-block">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                  <router-link class="h5 mb-0 nav-link nav_text" to="/index">首頁 <span class="sr-only">(current)</span>
+                  <router-link class="h5 mb-0 nav-link nav_text" to="/home">首頁 <span class="sr-only">(current)</span>
                   </router-link>
                 </li>
 
@@ -83,17 +89,12 @@
                 <li class="nav-item">
                   <router-link class="h5 mb-0 nav-link nav_text" to="/admin/products">登入</router-link>
                 </li>
-
               </ul>
             </div>
 
-          </div>
-
-          <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- 小螢幕；收合內容 -->
             <div class="ml-auto d-md-none">
-
               <ul class="navbar-nav ml-auto d-flex flex-column align-items-center">
-
                 <li class="nav-item active">
 
                   <router-link class="nav-link nav_text border-bottom" to="/index">
@@ -102,29 +103,29 @@
                 </li>
 
                 <li class="nav-item">
-                  <router-link class="nav-link nav_text" to="/services">威士忌</router-link>
+                  <router-link class="nav-link nav_text" to="/whiskey">威士忌</router-link>
                 </li>
 
                 <li class="nav-item">
-                  <router-link class="nav-link nav_text" to="/services/travel">旅遊</router-link>
+                  <router-link class="nav-link nav_text" to="/travel">旅遊</router-link>
                 </li>
 
                 <li class="nav-item">
-                  <router-link class="nav-link nav_text" to="/services/party">派對</router-link>
+                  <router-link class="nav-link nav_text" to="/party">派對</router-link>
                 </li>
 
                 <li class="nav-item">
-                  <router-link class="h5 nav-link nav_text" to="/admin/products">登入</router-link>
+                  <router-link class="nav-link nav_text" to="/admin/products">登入</router-link>
                 </li>
               </ul>
 
             </div>
-          </div>> -->
+
+          </div>
+
 
 
         </nav>
-
-
 
       </div>
     </section>
@@ -133,23 +134,12 @@
 </template>
 
 
-
 <script>
+
   export default {
     name: 'IndexNavbar',
-    props: ["shoppingList"], // 使用props接收index內的資料。
+    props: ["shoppingList"], // 使用props接收資料。
 
-    data() {
-      return {
-
-      }
-
-    },
 
   }
-
 </script>
-
-<style lang="scss">
-  /* @import "../assets/helpers/index_style.scss"; */
-</style>

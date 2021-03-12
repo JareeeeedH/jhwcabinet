@@ -330,7 +330,7 @@ import Pagination from '../Pagination';
         created() {
             this.getProducts()
 
-            this.$bus.$emit('message:push', 'Message', 'info') //event bus的使用方法；載入alert元件後；可將這段用於任何要顯示的地方。
+            this.$bus.$emit('message:push', 'Good day !', 'info') //event bus的使用方法；載入alert元件後；可將這段用於任何要顯示的地方。
         },
 
     }
