@@ -5,5 +5,5 @@
 
 #歡迎參觀與詢問。
 
-#https://jareeeeedh.github.io/jhwcabinet/#/index
+#https://jareeeeedh.github.io/jhwcabinet/
 (圖片與相關文案內容取自網路，此網站為練習作品使用，不用於商業用途)
