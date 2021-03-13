@@ -5,7 +5,7 @@
 
 ## 簡介
 使用Vue CLI2建立Vue.js框架實作網站，透過 AJAX 串接 API 模擬電商網頁的購物流程，網頁區分有 前台、後台。
-Demo:
+## Demo:
 https://jareeeeedh.github.io/jhwcabinet/#/home
 
 
@@ -32,7 +32,7 @@ https://jareeeeedh.github.io/jhwcabinet/#/home
 * vue-loading-overlay讀取效果互動
 * jQuery,Bootstrap, SCSS, RWD
 
-hr
-
-前台介紹
-後台介紹
+## 前台介紹
+...
+## 後台介紹
+...
