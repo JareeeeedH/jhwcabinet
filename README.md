@@ -1,7 +1,6 @@
-
 # 傑瑞酒業
 **除了有提供whiskey銷售、還有酒廠旅遊服務與派對舉辦，歡迎參觀與詢問。(圖片與相關文案內容取自網路，此網站為練習作品使用，不用於商業用途)**
-
+![VuePhoto](https://user-images.githubusercontent.com/62212910/111037790-b1d22c00-8460-11eb-8c43-747255670e65.jpg)
 
 ## 簡介
 使用Vue CLI2建立Vue.js框架實作網站，透過 AJAX 串接 API 模擬電商網頁的購物流程，網頁區分有 前台、後台。
@@ -36,4 +35,7 @@ https://jareeeeedh.github.io/jhwcabinet/#/home
 ...
 ## 後台介紹
 ...
+<<<<<<< HEAD
 
+=======
+>>>>>>> e363bcc61d1075211bc2f0d8e46e3945ece8b91e
