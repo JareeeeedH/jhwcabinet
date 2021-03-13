@@ -1,9 +1,9 @@
 <template>
   <div id="app">
 
-    <!-- 全域插入NavBar；待確認。 -->
+
     <div class="sticky-top">
-      <Index_Navbar :shoppingList='cartList'></Index_Navbar>
+      <!-- <Index_Navbar :shoppingList='cartList'></Index_Navbar> -->
     </div>
 
 
@@ -45,21 +45,21 @@
 
       }
     },
-    methods: {
-      getCart() {
-        const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
-        const vm = this;
+    // methods: {
+    //   getCart() {
+    //     const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+    //     const vm = this;
 
-        this.$http.get(api).then((response) => {
-          vm.cartList = response.data.data;
-          console.log('購物車清單', response.data.data);
-        })
-      },
+    //     this.$http.get(api).then((response) => {
+    //       vm.cartList = response.data.data;
+    //       console.log('購物車清單', response.data.data);
+    //     })
+    //   },
 
-    },
-    created() {
-      this.getCart();
-    }
+    // },
+    // created() {
+    //   this.getCart();
+    // }
   }
 </script>
 

@@ -17,7 +17,7 @@
             <button style="cursor:pointer" class="btn btn-cart text-white dropdown-toggle" type="button"
               id="dropdownMenuButton" data-toggle="dropdown">
               <i class="fas fa-wine-bottle fa-2x abs"></i>
-              <span class="badge badge-danger">{{cartList.carts.length}}</span>
+              <span class="badge badge-danger">{{shoppingList.carts.length}}</span>
             </button>
 
             <div class="dropdown-menu dropdown-menu-right dropdown-md">
@@ -32,7 +32,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(item,index) in cartList.carts">
+                  <tr v-for="(item,index) in shoppingList.carts">
                     <td scope="row">
                       <i class="fas fa-trash-alt"></i>
                     </td>
@@ -46,7 +46,7 @@
                 <tfoot>
                   <tr class="text-barMain h5 font-weight-bold">
                     <td scope="row" colspan="4" class="font-weight-bold h4 text-right">總計</td>
-                    <td class="text-right">{{cartList.final_total | currency}}</td>
+                    <td class="text-right">{{shoppingList.final_total | currency}}</td>
                   </tr>
                 </tfoot>
               </table>
@@ -135,38 +135,11 @@
 
 
 <script>
+
   export default {
-    data() {
-      return {
-        cartList: {
-          carts: {}
-        },
+    name: 'IndexNavbar',
+    props: ["shoppingList"], // 使用props接收資料。
 
-      }
-    },
-    methods: {
-      getCart() {
-        const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
-        const vm = this;
 
-        this.$http.get(api).then((response) => {
-          vm.cartList = response.data.data;
-          console.log('購物車清單', response.data.data);
-        })
-      },
-
-    },
-    created() {
-      const vm = this;
-
-      this.getCart();
-
-      // 接收 event Bus
-      vm.$bus.$on('shopCart:update', () => {
-        vm.getCart();
-      });
-
-    }
   }
-
 </script>

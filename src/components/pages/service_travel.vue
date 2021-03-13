@@ -3,6 +3,10 @@
 
     <!-- <Index_Navbar :shoppingList='cartList'></Index_Navbar> -->
 
+    <div class="sticky-top">
+      <Index_Navbar></Index_Navbar>
+    </div>
+
     <div class="container">
       <div class="row p-5">
         <h3 class="text-danger">旅遊服務目前無限期暫停。</h3>
@@ -86,11 +90,11 @@
 </template>
 
 <script>
+  import Index_Navbar from '../Index_Navbar';
 
   export default {
-    data() {
-      return {
-      }
+    components: {
+      Index_Navbar,
     }
   }
 </script>

@@ -1,13 +1,18 @@
 <template>
   <div class="hello bg-light">
 
+    <!--  舊有的爛方法 -->
     <!-- 在此插入Navbar；並用 props讓Navbar元件接index的資料 -->
-    <!-- <div class="sticky-top">
-      <Index_Navbar :shoppingList='cartList'></Index_Navbar>
-    </div> -->
+    <!-- <Index_Navbar :shoppingList='cartList'></Index_Navbar> -->
+
+
+    <div class="sticky-top">
+      <Index_Navbar></Index_Navbar>
+    </div>
+
 
     <!-- Alert元件 -->
-    <Alert/>
+    <Alert />
 
     <!-- 讀取效果元件 -->
     <loading :active.sync="isLoading">
@@ -62,9 +67,7 @@
           <div class="row">
             <div class="col-md-4 mb-3 box-shadow" v-for="item in filterProducts" :key="item.id">
               <div class="card border shadow-sm">
-                <div 
-                  @click.prevent="toProductDetail(item.id)"
-                  class="bg-cover" style="height: 180px;cursor:pointer"
+                <div @click.prevent="toProductDetail(item.id)" class="bg-cover" style="height: 180px;cursor:pointer"
                   :style="{backgroundImage: `url(${item.imageUrl})`}">
                 </div>
                 <div class="card-body">
@@ -151,23 +154,20 @@
 </template>
 
 <script>
-  // import Index_Navbar from '../Index_Navbar';
+  import Index_Navbar from '../Index_Navbar';
   // import Index_Footer from '../Index_Footer';
 
-  import Alert from '../AlertMessage'; //痾樂
+  import Alert from '../AlertMessage'; //Alert元件
 
   export default {
     components: {
-      // Index_Navbar,
+      Index_Navbar,
       // Index_Footer,
       Alert,
     },
 
     data() {
       return {
-        cartList: {
-          carts: {}
-        },
 
         sortedProduct: 'all', //控制篩選產品、預設為取所有產品
 
@@ -270,22 +270,25 @@
 
           vm.status.loadingItem = '' //讀取消失
 
+          // event bus觸發 Navbar的function
+          vm.$bus.$emit('shopCart:update');
+
           $('#productModal').modal('hide')
           this.$bus.$emit('message:push', '已加入購物車', 'success')
 
         })
 
       },
-      // 取得購物車清單
-      getCart() {
-        const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
-        const vm = this;
+      // 取得購物車清單；以 event Bus執 Navbar元件的取得清單資料了。
+      // getCart() {
+      //   const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+      //   const vm = this;
 
-        this.$http.get(api).then((response) => {
-          vm.cartList = response.data.data;
-          console.log('購物車清單', response.data.data);
-        })
-      },
+      //   this.$http.get(api).then((response) => {
+      //     vm.cartList = response.data.data;
+      //     console.log('購物車清單', response.data.data);
+      //   })
+      // },
 
       // 點擊、控制分類、套用到 filter
       getSorted(sort) {
@@ -294,7 +297,6 @@
     },
 
     created() {
-      this.getCart();
       this.getProducts();
 
       // event bus的使用方法；、載入元件後；可將這段用於任何要顯示的地方。

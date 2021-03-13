@@ -2,11 +2,13 @@
     <div class="hello">
 
         <!-- 首頁NavBar元件 -->
-        <!-- <Index_Navbar :shoppingList='cartList'></Index_Navbar> -->
+        <div class="sticky-top">
+            <Index_Navbar></Index_Navbar>
+        </div>
 
-        <!-- 痾樂 -->
+
+        <!-- Alert彈出警示 -->
         <Alert />
-
 
 
         <!-- 首頁上方大圖示 -->
@@ -278,26 +280,17 @@
 </template>
 
 <script>
-    // 上下bar以全域載入
-    // import Index_Navbar from './Index_Navbar';
+    import Index_Navbar from './Index_Navbar';
     // import Index_Footer from './Index_Footer';
     import Alert from './AlertMessage';// Alert Message
 
     export default {
         name: 'index',
         components: {
-            // Index_Navbar,
+            Index_Navbar,
             // Index_Footer,
             Alert
         },
-        // data() {
-        //     return {
-        //         cartList: {
-        //             carts: {}
-        //         },
-
-        //     }
-        // },
         methods: {
             // 登出
             signout() {
@@ -324,27 +317,30 @@
                 this.$http.post(api, { data: addingItem }).then((response) => {
                     console.log(response.data);
 
-                    vm.getCart();
+                    // 註冊event bus事件、並於Navbar觸發
+                    vm.$bus.$emit('shopCart:update');
+
                     $('#productModal').modal('hide')
                     this.$bus.$emit('message:push', '已加入購物車', 'success')
                 })
             },
-            // 取購物車列表
-            getCart() {
-                const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
-                const vm = this;
 
-                this.$http.get(api).then((response) => {
-                    vm.cartList = response.data.data;
-                    console.log('購物車清單', response.data.data);
-                })
-            },
+            // 取購物車列表；首頁不需要使用到。
+            // getCart() {
+            //     const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+            //     const vm = this;
+
+            //     this.$http.get(api).then((response) => {
+            //         vm.cartList = response.data.data;
+            //         console.log('購物車清單', response.data.data);
+            //     })
+            // },
 
 
         },
 
         created() {
-            // this.getCart();
+
         },
     }
 
@@ -386,6 +382,4 @@
     .today_photo_3 {
         background-image: url("../assets/image/product_king.jpg");
     }
-
-
 </style>

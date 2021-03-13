@@ -22,6 +22,8 @@ import dateFilter from './components/pages/filters/date';
 
 import App from './App';
 import router from './router'; //import router 導入router
+
+// 註冊event bus檔案
 import './bus';
 
 // Vee-validate

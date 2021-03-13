@@ -1,6 +1,10 @@
 <template>
   <div class="hello">
 
+    <div class="sticky-top">
+      <Index_Navbar></Index_Navbar>
+    </div>
+    
     <div class="party">
 
       <h1>Party Services</h1>
@@ -18,11 +22,12 @@
 </template>
 
 <script>
+  import Index_Navbar from '../Index_Navbar';
+
   export default {
-    data() {
-      return {
-      }
-    },
+    components: {
+      Index_Navbar,
+    }
   }
 </script>
 
