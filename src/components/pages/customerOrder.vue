@@ -102,7 +102,7 @@
             </tbody>
           </table>
           <!-- 確認付款去按鈕 -->
-          <!-- <div class="text-right" v-if="order.is_paid === false">
+         <!-- <div class="text-right" v-if="order.is_paid === false">
             <button class="btn btn-danger">確認付款去</button>
           </div> -->
 
@@ -117,9 +117,10 @@
 
           <!-- 信用卡付款欄位 -->
           <div class="col-md-6 d-flex flex-column">
-
             <div class="bg-barMain ">
-              <form action="" class="p-3 text-white">
+
+              <form action="" class="needs-validation p-3 text-white" novalidate>
+
                 <div class="form-row">
                   <div class="col-6 col-md-6">
                     <h1>付款</h1>
@@ -134,56 +135,68 @@
                   </div>
                 </div>
 
-                <label for="">卡號</label>
-
                 <div class="form-row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <input style="height: 50px;" type="text" class="form-control" placeholder="xxxx-xxxxx-xxxx-xxxx">
+                      <label for="cardNum">卡號</label>
+                      <input required id="cardNum" style="height: 50px;" type="text" class="form-control"
+                        placeholder="xxxx-xxxxx-xxxx-xxxx">
+                      <span class="invalid-feedback">欄位有誤</span>
+                      <span class="valid-feedback">欄位完成</span>
                     </div>
                   </div>
                 </div>
 
-                <label for="">持卡人</label>
-                <div class="form-row mb-1">
+                <div class="form-row">
 
-                  <div class="col-6 mb-1">
-                    <input style="height: 50px;" type="text" class="form-control" placeholder="姓">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="fn">First name</label>
+                      <input required id="fn" required style="height: 50px;" type="text" class="form-control"
+                        placeholder="姓">
+                    </div>
                   </div>
-                  <div class="col-6 mb-1">
-                    <input style="height: 50px;" type="text" class="form-control" placeholder="名">
-                  </div>
 
-                </div>
-
-                <label for="">有效期限</label>
-                <div class="form-row mb-1">
-
-                  <div class="col-6 mb-1">
-                    <input style="height: 50px;" type="text" class="form-control" placeholder="month">
-                  </div>
-                  <div class="col-6 mb-1">
-                    <input style="height: 50px;" type="text" class="form-control" placeholder="year">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="ln">Last Name</label>
+                      <input required id="ln" style="height: 50px;" type="text" class="form-control" placeholder="名">
+                    </div>
                   </div>
 
                 </div>
-
-                <label for="">驗證碼</label>
 
                 <div class="form-row">
 
-                  <div class="col-12">
-                    <input style="height: 50px" type="text" class="form-control" placeholder="XXX">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="month">有效期限/月</label>
+                      <input id="month" style="height: 50px;" type="text" class="form-control" placeholder="month">
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="year">有效期限/年</label>
+                      <input id="year" style="height: 50px;" type="text" class="form-control" placeholder="year">
+                    </div>
                   </div>
 
                 </div>
-              </form>
-            </div>
 
-            <div class="" @click="orderToPay">
-              <div class="bg-success w-100 text-center text-white btn" v-if="order.is_paid === false">
-                <span class="p-3 h4">確認付款</span>
-              </div>
+                <div class="form-row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="pw">驗證碼</label>
+                      <input id="pw" style="height: 50px" type="text" class="form-control" placeholder="XXX">
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-success" @click="orderToPay">確認付款</button>
+
+              </form>
+
+
             </div>
 
           </div>
@@ -293,6 +306,25 @@
 
 <script>
 
+  // BS4表單驗證的JS
+  (function () {
+    'use strict';
+    window.addEventListener('load', function () {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+
 
   export default {
     components: {
@@ -346,30 +378,7 @@
 
 
 <style>
-  .nav_text {
-    font-weight: bold;
-  }
-
-  .bg-cover {
-    background-size: cover;
-    background-position: center center
-  }
-
-  .btn-cart .badge {
-    position: absolute;
-  }
-
-  /* 
-.jumbo-bg{
-    background-image: url('../img/success.jpg');
-    height: 496px;
-}
-
-.bg-lighter{
-    background-color: rgb(255, 255, 255, 0.3)
-} */
-
-
+  
   .line::after {
     content: "";
     position: absolute;

@@ -3,17 +3,22 @@
 
     <!-- <Index_Navbar :shoppingList='cartList'></Index_Navbar> -->
 
-    <div class="container">
-      <div class="row mb-5 bg-light text-barMain">
+    <div class="sticky-top">
+      <Index_Navbar></Index_Navbar>
+    </div>
 
-        <h1>因疫情緣故，暫時取消旅遊服務。</h1>
-        <router-link class="h1" to="/index">
-          返回首頁
-        </router-link>
+    <div class="container">
+      <div class="row p-5">
+        <h3 class="text-danger">旅遊服務目前無限期暫停。</h3>
+      </div>
+      <div class="row mb-5 bg-light text-barMain">
 
         <div class="col-md-6 p-5">
           <div>
-            <h4>蘇格蘭高地 尼斯湖 酒鄉英格蘭 精選十三天</h4>
+            <div>
+              <h5 class="font-weight-bold">蘇格蘭高地 尼斯湖 酒鄉英格蘭 精選十三天</h5>
+            </div>
+
             <hr>
             <p>DAY01臺北 / 杜拜(阿姆斯特丹)</p>
             <p>DAY02杜拜 / 格拉斯哥—西北高地之路—Lochaber區</p>
@@ -35,7 +40,12 @@
 
         <div class="col-md-6 p-5">
           <div>
-            <h4>品味蘇格蘭 斯貝塞 酒廠三天二夜之旅</h4>
+
+            <div>
+              <h5 class="font-weight-bold">品味蘇格蘭 斯貝塞 酒廠三天二夜之旅</h5>
+            </div>
+            <hr>
+
             <p>
               從愛丁堡出發，前往威士忌酒廠林立的斯貝塞（Speyside）觀光，還可以參觀著名的亞伯樂威士忌酒廠、家豪威士忌酒廠等知名酒廠。
             </p>
@@ -80,11 +90,11 @@
 </template>
 
 <script>
+  import Index_Navbar from '../Index_Navbar';
 
   export default {
-    data() {
-      return {
-      }
+    components: {
+      Index_Navbar,
     }
   }
 </script>
@@ -99,10 +109,5 @@
   .travel_2 {
     background-image: url('../../assets/image/travel_2.jpg');
     height: 300px;
-  }
-
-  .bg-cover {
-    background-position: cover;
-    background-size: center center
   }
 </style>

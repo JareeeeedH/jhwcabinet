@@ -1,10 +1,13 @@
 <template>
   <div class="hello bg-light">
 
+    <!--  舊有的爛方法 -->
     <!-- 在此插入Navbar；並用 props讓Navbar元件接index的資料 -->
+    <!-- <Index_Navbar :shoppingList='cartList'></Index_Navbar> -->
+
 
     <div class="sticky-top">
-      <Index_Navbar :shoppingList='cartList'></Index_Navbar>
+      <Index_Navbar></Index_Navbar>
     </div>
 
 
@@ -62,28 +65,25 @@
         <div class="col-md-10">
 
           <div class="row">
-            <div class="col-md-4 mb-4" v-for="item in filterProducts" :key="item.id">
+            <div class="col-md-4 mb-3 box-shadow" v-for="item in filterProducts" :key="item.id">
               <div class="card border shadow-sm">
-                <div 
-                  @click.prevent="toProductDetail(item.id)"
-                  style="height: 220px; background-size: cover; background-position: center center; cursor:pointer"
-                    :style="{backgroundImage: `url(${item.imageUrl})`}">
+                <div @click.prevent="toProductDetail(item.id)" class="bg-cover" style="height: 180px;cursor:pointer"
+                  :style="{backgroundImage: `url(${item.imageUrl})`}">
                 </div>
                 <div class="card-body">
                   <span class="badge badge-secondary float-right ml-2">{{ item.category }}</span>
                   <h6 class="card-title" style="height:50px">
-                    <a @click.prevent="toProductDetail(item.id)" href="#" class="text-barMain font-weight-bold">{{
-                      item.title }}</a>
+                    <a @click.prevent="toProductDetail(item.id)" class="title_Link">{{item.title }}</a>
                   </h6>
                   <p class="card-text">{{ item.description }}</p>
-                  <div class="d-flex justify-content-between align-items-baseline">
-                    <div class="h6" v-if="!item.price">{{ item.origin_price | currency}} 元</div>
-                    <del class="h6" v-if="item.price">{{ item.origin_price | currency}} 元</del>
+                  <div class="d-flex justify-content-end align-items-baseline">
+                    <!-- <div class="h6" v-if="!item.price">{{ item.origin_price | currency}} 元</div>
+                    <del class="h6" v-if="item.price">{{ item.origin_price | currency}} 元</del> -->
                     <div class="h5 text-success" v-if="item.price">{{ item.price | currency}} 元</div>
                   </div>
                 </div>
                 <div class="card-footer d-flex">
-                  <button type="button" class="btn btn-outline-secondary btn-sm" @click="getSingleProduct(item.id)">
+                  <button type="button" class="btn btn-outline-barMain btn-sm" @click="getSingleProduct(item.id)">
                     <i class="fas fa-spinner fa-spin" v-if="status.loadingItem==item.id"></i>
                     查看更多
                   </button>
@@ -105,15 +105,15 @@
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content bg-barMain text-white">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{{ product.title }}</h5>
+            <h5 class="modal-title " id="exampleModalLabel">{{ product.title }}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <div :style="{backgroundImage: `url(${product.imageUrl})`}" style="height: 250px" class="bg-cover"></div>
+            <div :style="{backgroundImage: `url(${product.imageUrl})`}" style="height: 200px" class="bg-cover"></div>
 
             <!-- 舊版型使用img方式 (註解掉) -->
             <!-- <img :src="product.imageUrl" class="img-fluid" alt="productPhoto"> -->
@@ -136,7 +136,7 @@
             <div class="text-muted text-nowrap mr-3">
               小計 <strong>{{ product.Qty * product.price }}</strong> 元
             </div>
-            <button type="button" class="btn btn-primary" @click="addtoCart(product.id, product.Qty)">
+            <button type="button" class="btn btn-sm btn-light" @click="addtoCart(product.id, product.Qty)">
               <i class="fas fa-spinner fa-spin" v-if="status.loadingItem==product.id"></i>
               加到購物車
             </button>
@@ -155,27 +155,23 @@
 
 <script>
   import Index_Navbar from '../Index_Navbar';
-  import Index_Footer from '../Index_Footer';
+  // import Index_Footer from '../Index_Footer';
 
-  import Alert from '../AlertMessage'; //痾樂
+  import Alert from '../AlertMessage'; //Alert元件
 
   export default {
     components: {
       Index_Navbar,
-      Index_Footer,
+      // Index_Footer,
       Alert,
     },
 
     data() {
       return {
-        cartList: {
-          carts: {}
-        },
 
         sortedProduct: 'all', //控制篩選產品、預設為取所有產品
 
         products: {}, //所有產品data
-
         product: {}, //單一筆產品data
 
         isLoading: false, //全域loading控制
@@ -186,6 +182,7 @@
 
       }
     },
+    // 過濾塞選
     computed: {
       filterProducts: function () {
         var vm = this;
@@ -211,11 +208,6 @@
             return item.price > 15000
           })
         }
-
-
-        // return vm.products.filter(function(item){
-        //   return item.price > 1500;
-        // })
       },
     },
     methods: {
@@ -278,22 +270,25 @@
 
           vm.status.loadingItem = '' //讀取消失
 
+          // event bus觸發 Navbar的function
+          vm.$bus.$emit('shopCart:update');
+
           $('#productModal').modal('hide')
           this.$bus.$emit('message:push', '已加入購物車', 'success')
 
         })
 
       },
-      // 取得購物車清單
-      getCart() {
-        const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
-        const vm = this;
+      // 取得購物車清單；以 event Bus執 Navbar元件的取得清單資料了。
+      // getCart() {
+      //   const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+      //   const vm = this;
 
-        this.$http.get(api).then((response) => {
-          vm.cartList = response.data.data;
-          console.log('購物車清單', response.data.data);
-        })
-      },
+      //   this.$http.get(api).then((response) => {
+      //     vm.cartList = response.data.data;
+      //     console.log('購物車清單', response.data.data);
+      //   })
+      // },
 
       // 點擊、控制分類、套用到 filter
       getSorted(sort) {
@@ -302,7 +297,6 @@
     },
 
     created() {
-      this.getCart();
       this.getProducts();
 
       // event bus的使用方法；、載入元件後；可將這段用於任何要顯示的地方。

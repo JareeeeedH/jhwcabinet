@@ -13,7 +13,7 @@
                 <tr>
                     <th scope="col" width="80">#</th>
                     <th scope="col">名稱</th>
-                    <th scope="col">有效日期</th>
+                    <th scope="col">有效日期 (Unix timestamp格式)</th>
                     <th scope="col" width="80">折扣率</th>
                     <th scope="col" width="100">是否啟用</th>
                     <th scope="col">編輯</th>
@@ -24,7 +24,7 @@
 
                     <th scope="row">{{ticket.num}}</th>
                     <td>{{ticket.title}}</td>
-                    <td>{{ticket.due_date}}</td>
+                    <td>{{ticket.due_date | date}}</td>
                     <td>{{ticket.percent }}</td>
                     <td class="text-center">
                         <span class="text-success" v-if="ticket.is_enabled==1">是</span>

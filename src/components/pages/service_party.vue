@@ -1,12 +1,12 @@
 <template>
   <div class="hello">
 
+    <div class="sticky-top">
+      <Index_Navbar></Index_Navbar>
+    </div>
+    
     <div class="party">
 
-      <router-link class="h1" to="/index">
-        返回首頁
-      </router-link>
-      
       <h1>Party Services</h1>
 
       <div class="h5">
@@ -22,11 +22,12 @@
 </template>
 
 <script>
+  import Index_Navbar from '../Index_Navbar';
+
   export default {
-    data() {
-      return {
-      }
-    },
+    components: {
+      Index_Navbar,
+    }
   }
 </script>
 
