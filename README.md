@@ -5,7 +5,7 @@
 
 ## 簡介
 使用Vue CLI2建立Vue.js框架實作網站，透過 AJAX 串接 API 模擬電商網頁的購物流程，網頁區分有 前台、後台。
-Demo:
+## Demo:
 https://jareeeeedh.github.io/jhwcabinet/#/home
 
 
@@ -16,21 +16,21 @@ https://jareeeeedh.github.io/jhwcabinet/#/home
 * 購物車結帳: 建立訂單至完成付款流程。
 
 **後台**
-*管理員登入
-*產品列表:新增、修改、刪除產品資訊
-*訂單管理：查看訂單資訊
-*優惠券: 新增、修改優惠券
+* 管理員登入
+* 產品列表:新增、修改、刪除產品資訊
+* 訂單管理：查看訂單資訊
+* 優惠券: 新增、修改優惠券
 
-主要使用技術
+**主要使用技術**
 
-JaveScript
-Vue CLI2
-Webpack
-Vue Router 配置路由
-vue-Axios 串接API功能
-VeeValidate 表單驗證
-vue-loading-overlay讀取效果互動
-jQuery,Bootstrap, SCSS, RWD
+* JaveScript
+* Vue CLI2
+* Webpack
+* Vue Router 配置路由
+* vue-Axios 串接API功能
+* VeeValidate 表單驗證
+* vue-loading-overlay讀取效果互動
+* jQuery,Bootstrap, SCSS, RWD
 
 hr
 
