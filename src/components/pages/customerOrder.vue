@@ -192,7 +192,7 @@
                   </div>
                 </div>
 
-                <button type="submit" class="btn btn-success" @click="orderToPay" v-if="order.is_paid === false">確認付款</button>
+                <button type="submit" class="btn btn-success" @click="orderToPay">確認付款</button>
 
               </form>
 
