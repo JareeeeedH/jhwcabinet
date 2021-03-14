@@ -32,10 +32,48 @@ https://jareeeeedh.github.io/jhwcabinet/#/home
 * jQuery,Bootstrap, SCSS, RWD
 
 ## 前台介紹
-...
-## 後台介紹
-...
-<<<<<<< HEAD
 
-=======
->>>>>>> e363bcc61d1075211bc2f0d8e46e3945ece8b91e
+## 首頁 ##
+* 網頁導覽
+* 服務介紹
+* 最新消息與專欄
+* 推薦商品
+
+
+![home](https://user-images.githubusercontent.com/62212910/111065884-14760700-84f7-11eb-8738-25e2c2626fa5.jpg)
+
+## 產品列表、單一筆產品內容、 詳細產品內容頁面 ##
+* 篩選品項
+* 查看細節、選擇數量、加入購物車
+
+
+![homePhoto](https://user-images.githubusercontent.com/62212910/111066004-c31a4780-84f7-11eb-95a1-6d68149404e0.jpg)
+![productModal](https://user-images.githubusercontent.com/62212910/111065887-1e980580-84f7-11eb-91c7-0e24ec634ac4.jpg)
+![productDetail](https://user-images.githubusercontent.com/62212910/111065889-1fc93280-84f7-11eb-993e-34075e23c9e9.jpg)
+
+
+## 購物車內容、結帳流程##
+
+* 折扣碼套用
+* Veevalidate表單驗證
+* bootstrap表單驗證
+
+![cart](https://user-images.githubusercontent.com/62212910/111066258-f4474780-84f8-11eb-99b8-c61fc82ae0f9.jpg)
+![order](https://user-images.githubusercontent.com/62212910/111066259-f5787480-84f8-11eb-8b49-a5f094eee9e8.jpg)
+
+
+
+## 後台介紹 ##
+
+## 登入驗證##
+
+![login](https://user-images.githubusercontent.com/62212910/111066215-c104b880-84f8-11eb-86a4-8ea129f44657.jpg)
+
+
+## 產品列表 ##
+* 產品 新增、修改、刪除
+
+
+* ![dashBoardProduct](https://user-images.githubusercontent.com/62212910/111066362-95360280-84f9-11eb-8356-bfbab8a0aeff.jpg)
+* ![dashBoard](https://user-images.githubusercontent.com/62212910/111066360-936c3f00-84f9-11eb-94b0-a7af546d380d.jpg)
+
