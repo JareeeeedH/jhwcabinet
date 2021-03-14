@@ -1,5 +1,6 @@
 # 傑瑞酒業
-**除了有提供whiskey銷售、還有酒廠旅遊服務與派對舉辦，歡迎參觀與詢問。(圖片與相關文案內容取自網路，此網站為練習作品使用，不用於商業用途)**
+**whiskey銷售、酒廠旅遊服務 與派對舉辦，歡迎參觀與詢問。**  
+**(圖片與相關內容取自網路，此網站為練習作品使用，不用於商業用途)**
 ![VuePhoto](https://user-images.githubusercontent.com/62212910/111037790-b1d22c00-8460-11eb-8c43-747255670e65.jpg)
 
 ## 簡介 ##
@@ -76,4 +77,3 @@ https://jareeeeedh.github.io/jhwcabinet/#/home
 
 * ![dashBoardProduct](https://user-images.githubusercontent.com/62212910/111066362-95360280-84f9-11eb-8356-bfbab8a0aeff.jpg)
 * ![dashBoard](https://user-images.githubusercontent.com/62212910/111066360-936c3f00-84f9-11eb-94b0-a7af546d380d.jpg)
-
