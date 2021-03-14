@@ -2,7 +2,7 @@
 **除了有提供whiskey銷售、還有酒廠旅遊服務與派對舉辦，歡迎參觀與詢問。(圖片與相關文案內容取自網路，此網站為練習作品使用，不用於商業用途)**
 ![VuePhoto](https://user-images.githubusercontent.com/62212910/111037790-b1d22c00-8460-11eb-8c43-747255670e65.jpg)
 
-## 簡介
+## 簡介 ##
 使用Vue CLI2建立Vue.js框架實作網站，透過 AJAX 串接 API 模擬電商網頁的購物流程，網頁區分有 前台、後台。
 ## Demo:
 https://jareeeeedh.github.io/jhwcabinet/#/home
@@ -31,7 +31,7 @@ https://jareeeeedh.github.io/jhwcabinet/#/home
 * vue-loading-overlay讀取效果互動
 * jQuery,Bootstrap, SCSS, RWD
 
-## 前台介紹
+# 前台介紹 
 
 ## 首頁 ##
 * 網頁導覽
@@ -52,7 +52,7 @@ https://jareeeeedh.github.io/jhwcabinet/#/home
 ![productDetail](https://user-images.githubusercontent.com/62212910/111065889-1fc93280-84f7-11eb-993e-34075e23c9e9.jpg)
 
 
-## 購物車內容、結帳流程##
+## 購物車內容、結帳流程 ##
 
 * 折扣碼套用
 * Veevalidate表單驗證
@@ -63,9 +63,9 @@ https://jareeeeedh.github.io/jhwcabinet/#/home
 
 
 
-## 後台介紹 ##
+# 後台介紹
 
-## 登入驗證##
+## 登入驗證 ##
 
 ![login](https://user-images.githubusercontent.com/62212910/111066215-c104b880-84f8-11eb-86a4-8ea129f44657.jpg)
 
