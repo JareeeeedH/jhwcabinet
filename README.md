@@ -22,13 +22,13 @@ https://jareeeeedh.github.io/jhwcabinet/#/home
 
 **主要使用技術**
 
-* JaveScript
+* JavaScript
 * Vue CLI2
 * Webpack
 * Vue Router 配置路由
-* vue-Axios 串接API功能
+* Vue-Axios 串接API功能
 * VeeValidate 表單驗證
-* vue-loading-overlay讀取效果互動
+* Vue-loading-overlay讀取效果互動
 * jQuery,Bootstrap, SCSS, RWD
 
 # 前台介紹 
