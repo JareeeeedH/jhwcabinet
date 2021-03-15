@@ -1,9 +1,9 @@
 <template>
   <div class="">
 
-    <!-- <div class="sticky-top">
-      <Index_Navbar :shoppingList='cartList'></Index_Navbar>
-    </div> -->
+    <div class="sticky-top">
+      <Index_Navbar></Index_Navbar>
+    </div>
 
     <!-- 痾樂 -->
     <Alert />

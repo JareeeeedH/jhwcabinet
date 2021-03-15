@@ -1,5 +1,5 @@
 <template>
-    <div class="hello">
+    <div class="hello bg-light">
 
         <!-- 首頁NavBar元件 -->
         <div class="sticky-top">
@@ -58,8 +58,8 @@
 
                         <div class="services_photo_1 serviceRec bg-cover">
                         </div>
-
                         <span class="h2 text-white writting-vertical" style="z-index: 1;">酒精</span>
+
 
                     </router-link>
 
@@ -132,8 +132,8 @@
         </section>
 
         <!-- 本周專欄-->
-        <section class="mb-5 bg-light">
-            <div class="container">
+        <section class="mb-5 bg-barSecond">
+            <div class="container p-3">
 
                 <div class="row justify-content-center">
                     <h3 class="text-barMain font-weight-bold p-3">本週專欄</h3>
