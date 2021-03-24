@@ -1,0 +1,36 @@
+.serviceRec {
+  background-color: black;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  -webkit-filter: blur(3px);
+          filter: blur(3px);
+}
+
+.serviceRec:hover {
+  -webkit-filter: blur(0.5px);
+          filter: blur(0.5px);
+}
+
+.item-tag {
+  position: absolute;
+  left: 20px;
+  padding: 7px;
+  letter-spacing: 5px;
+  background-color: brown;
+  color: white;
+  -webkit-writing-mode: vertical-rl;
+  -ms-writing-mode: tb-rl;
+  writing-mode: vertical-rl;
+}
+
+.item-heart {
+  position: absolute;
+  padding: 5px;
+  font-size: 20px;
+  right: 5px;
+  color: #0f3057;
+}
+/*# sourceMappingURL=index_Style.css.map */

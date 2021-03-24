@@ -1,0 +1,58 @@
+.styleTest {
+  color: red;
+}
+
+.bg-cover {
+  background-size: cover;
+  background-position: center center;
+}
+
+.bg-lighter {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.spacing {
+  letter-spacing: 10px;
+}
+
+.writting-vertical {
+  -webkit-writing-mode: vertical-rl;
+  -ms-writing-mode: tb-rl;
+  writing-mode: vertical-rl;
+}
+
+.barSecond {
+  color: #678F8d;
+}
+
+.bg-barSecond {
+  background-color: #678F8d;
+}
+
+.btn-cart .badge {
+  position: absolute;
+}
+
+.nav_text {
+  font-weight: bold;
+  color: white;
+}
+
+.font_1 {
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.font_2 {
+  font-family: 'Reggae One', cursive;
+}
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+@media (min-width: 768px) {
+  .dropdown-md {
+    min-width: 600px;
+  }
+}
+/*# sourceMappingURL=utilities.css.map */

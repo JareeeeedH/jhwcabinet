@@ -48,7 +48,7 @@
         <section class="mb-5">
             <div class="container">
 
-                <h3 class="text-barMain font-weight-bold">服務專區</h3>
+                <h3 class="text-barMain font-weight-bold">福屋區</h3>
                 <hr>
 
                 <div class="row no-gutters justify-content-between">
@@ -349,7 +349,7 @@
 
 <style lang="scss">
     .index_jumbo_image {
-        height: 720px;
+        height: 780px;
         background-image: url('../assets/image/index_jumbo.jpg');
 
     }
