@@ -20,7 +20,10 @@
               <span class="badge badge-danger">{{cartList.carts.length}}</span>
             </button>
 
-            <div class="dropdown-menu dropdown-menu-right dropdown-md">
+
+
+            <!-- 兩個 DropDown，一個是有、一個空。 -->
+            <div class="dropdown-menu dropdown-menu-right dropdown-md"  v-if='cartList.carts.length != 0'>
               <table class="table">
                 <thead>
                   <tr>
@@ -56,6 +59,13 @@
                 結帳去
               </router-link>
             </div>
+
+            <div class="dropdown-menu dropdown-menu-right dropdown-md" v-if='cartList.carts.length == 0'>
+              <div class='p-3 text-center bg-light'>
+                <h5>購物車目前是空的喔~</h5>
+              </div>
+            </div>
+
           </div>
 
           <!-- 漢堡收合按鈕 -->
@@ -180,6 +190,7 @@
       vm.$bus.$on('shopCart:update', () => {
         vm.getCart();
       });
+
 
     }
   }

@@ -1,16 +1,14 @@
 <template>
   <div class="hello">
 
-    <!-- <Index_Navbar :shoppingList='cartList'></Index_Navbar> -->
-
     <div class="sticky-top">
       <Index_Navbar></Index_Navbar>
     </div>
 
     <div class="container">
-      <div class="row p-5">
+      <!-- <div class="row p-5">
         <h3 class="text-danger">旅遊服務目前無限期暫停。</h3>
-      </div>
+      </div> -->
       <div class="row mb-5 bg-light text-barMain">
 
         <div class="col-md-6 p-5">

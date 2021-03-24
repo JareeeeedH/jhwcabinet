@@ -5,7 +5,7 @@
       <Index_Navbar></Index_Navbar>
     </div>
 
-    <!-- 痾樂 -->
+    <!-- alert -->
     <Alert />
 
 
@@ -236,78 +236,15 @@
       </div>
     </section>
 
-
-    <!-- <section>
-      <div class="container">
-        <div class="my-3 row justify-content-center">
-          
-          <validation-observer v-slot="{ invalid }" class="col-md-10">
-            <form @submit.prevent="creatOrder">
-              
-              <div class="form-group">
-              <label for="useremail">Email</label>
-              <input type="email" class="form-control" name="email" id="useremail" v-model="form.user.email"
-                placeholder="請輸入 Email" required>
-              <span class="text-danger">Email Address Please</span>
-            </div>
-
-              <validation-provider rules="required|email" v-slot="{ errors, classes }" class="form-group">
-
-                <div class="form-group">
-
-                  <label for="email">Email</label>
-                  <input id="email" type="email" name="email" v-model="form.user.email" class="form-control"
-                    :class="classes">
-                  <span class="invalid-feedback"> {{errors[0]}}</span>
-
-                </div>
-
-              </validation-provider>
-
-
-
-
-
-              <div class="form-group">
-              <label for="username">收件人姓名</label>
-              <input type="text" class="form-control" name="name" id="username" v-model="form.user.name"
-                placeholder="輸入姓名" required>
-              <span class="text-danger">Do you know your name?</span>
-            </div>
-
-            <div class="form-group">
-              <label for="usertel">收件人電話</label>
-              <input type="tel" class="form-control" id="usertel" v-model="form.user.tel" placeholder="請輸入電話" required>
-            </div>
-
-            <div class="form-group">
-              <label for="useraddress">收件人地址</label>
-              <input type="text" class="form-control" name="address" id="useraddress" v-model="form.user.address"
-                placeholder="請輸入地址" required>
-              <span class="text-danger">地址欄位不得留空</span>
-            </div>
-
-            <div class="form-group">
-              <label for="comment">留言</label>
-              <textarea name="" id="comment" class="form-control" cols="30" rows="10" v-model="form.message"></textarea>
-            </div>
-              <div class="text-right">
-                <button class="btn btn-danger" :disabled="invalid">送出訂單</button>
-              </div>
-
-            </form>
-          </validation-observer>
-
-        </div>
-      </div>
-    </section> -->
+<!-- FOOTER -->
+    <Index_Footer/>
 
   </div>
 </template>
 
 <script>
   import Index_Navbar from '../Index_Navbar';
-  // import Index_Footer from '../Index_Footer';
+  import Index_Footer from '../Index_Footer';
   import Alert from '../AlertMessage'; //痾樂
 
 
@@ -315,7 +252,7 @@
     name: 'shoppingCart',
     components: {
       Index_Navbar,
-      // Index_Footer,
+      Index_Footer,
       Alert,
     },
 

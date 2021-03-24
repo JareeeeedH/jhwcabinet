@@ -8,6 +8,10 @@
     <!-- Alert元件 -->
     <Alert />
 
+    <!-- 全域讀取效果 -->
+    <loading :active.sync="isLoading">
+    </loading>
+
     <div class="container">
 
       <!-- 麵包屑-->
@@ -65,7 +69,7 @@
             </div>
 
             <hr>
-            <button class="btn btn-sm btn-barMain" @click="addtoCart(product.product.id, qty)">加入購物車</button>
+            <button class="btn btn-outline-barMain btn-sm " @click="addtoCart(product.product.id, qty)">加入購物車</button>
 
           </div>
 
@@ -116,7 +120,7 @@
 
         qty: '1',
 
-
+        isLoading: false,
 
       }
     },
@@ -130,6 +134,8 @@
 
         const vm = this;
 
+        vm.isLoading = true; //全域讀取打開
+
         this.$http.get(api).then((response) => {
 
           console.log('單一產品細節:', response.data);
@@ -137,6 +143,7 @@
           if (response.data.success == true) {
             vm.product = response.data;
           }
+        vm.isLoading = false; //全域讀取結束
 
         })
       },
@@ -153,8 +160,8 @@
       addtoCart(id, qty = 1) {
         const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
         const vm = this;
-        // this.status.loadingItem = `${id}`; 
-        //讀取出現
+
+        vm.isLoading = true; //全域讀取打開
 
         // 加入購物車所需丟入的資料結構。
         const addingItem = {
@@ -165,8 +172,10 @@
         this.$http.post(api, { data: addingItem }).then((response) => {
           console.log(response.data);
 
-          // vm.status.loadingItem = '' 
-          //讀取消失
+    
+          vm.isLoading = false;
+          vm.$bus.$emit('shopCart:update');
+
 
           $('#productModal').modal('hide')
           this.$bus.$emit('message:push', '已加入購物車', 'success')
