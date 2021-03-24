@@ -12,7 +12,7 @@
           <input type="checkbox" value="remember-me"> Remember me
         </label>
       </div>
-      <button class="btn btn-lg btn-barMain btn-block" type="submit">登台</button>
+      <button class="btn btn-lg btn-barMain btn-block" type="submit">登入</button>
       <router-link class="btn btn-lg btn-barMain btn-block" type="submit" to="/index">前往首頁</router-link>
       <p class="mt-5 mb-3 text-muted">&copy; 2021 Jared's Whiskey Cabinet</p>
     </form>

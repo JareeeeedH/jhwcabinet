@@ -1,6 +1,10 @@
 <template>
   <div class="hello bg-light">
 
+    <div class="sticky-top">
+      <Index_Navbar></Index_Navbar>
+    </div>
+
     <!-- Alert元件 -->
     <Alert />
 
@@ -19,9 +23,9 @@
         </ol>
       </nav>
 
-      <div class="row mb-5">
+      <div class="row mb-3">
 
-        <div class="col-md-4" style='top:20px'>
+        <div class="col-md-4">
 
           <div class="mb-3">
 
@@ -76,7 +80,7 @@
 
 
         <div class="col-md-8">
-          <div class="bg-cover d-none d-md-block" style="height: 700px"
+          <div class="bg-cover d-none d-md-block" style="height: 580px"
             :style="{backgroundImage: `url(${product.product.imageUrl})`}">
           </div>
         </div>
@@ -94,10 +98,12 @@
 
 <script>
   import Alert from '../AlertMessage'; //痾樂
+  import Index_Navbar from '../Index_Navbar';
 
   export default {
     components: {
       Alert,
+      Index_Navbar
 
     },
 

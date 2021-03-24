@@ -7,11 +7,13 @@
   bottom: 0px;
 
   filter: blur(3px);
+  transition: 0.2s;
 
 }
 
 .serviceRec:hover{
   filter: blur(0.5px);
+  transform: scale(1.2);
 }
 
 

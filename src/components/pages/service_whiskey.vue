@@ -19,7 +19,7 @@
     </loading>
 
     <!-- Jumbo大圖 -->
-    <div class="header jumbo-bg bg-cover d-flex align-items-end mb-3">
+    <div class="header jumbo-bg bg-cover d-flex align-items-end">
       <div class="p-5">
         <div class="bg-lighter p-3">
           <p class="h2">我有酒，你有故事嗎?</p>
@@ -28,78 +28,93 @@
       </div>
     </div>
 
-    <div class="container">
-      <div class="row">
+    <section class="py-3">
+      <div class="container">
+        <div class="row">
 
-        <!-- 產品服務頁面；左邊導覽欄位 -->
-        <div class="col-md-2 mb-2">
+          <!-- 產品服務頁面；左邊導覽欄位 -->
 
-          <div class="list-group bg-barMain sticky-top" id="list-tab" role="tablist" style="top:80px">
-            <ul style="list-style: none; padding-inline-start: 0px;">
-              <li>
-                <a @click="getSorted('all')" v-bind:class="{ active: sortedProduct== 'all' }"
-                  class="list-group-item list-group-item-action bg-barMain h5 mb-0 text-center">所有酒品
-                </a>
+          <div class="col-md-2 mb-2 ">
+
+            <div class="sticky-top list-group" style="top:80px;">
+
+              <li @click="getSorted('all')" class="list-group-item h6 mb-0 text-center"
+                v-bind:class="{ active: sortedProduct== 'all' }">
+                所有酒品
               </li>
-              <li>
-                <a @click="getSorted('normal')" v-bind:class="{ active: sortedProduct== 'normal' }"
-                  class="list-group-item list-group-item-action bg-barMain h5 mb-0 text-center">普飲區
-                </a>
+
+              <li @click="getSorted('normal')" class="list-group-item h6 mb-0 text-center"
+                v-bind:class="{ active: sortedProduct== 'normal' }">
+                普飲區
+
               </li>
-              <li>
-                <a @click="getSorted('recommended')" v-bind:class="{ active: sortedProduct== 'recommended' }"
-                  class="list-group-item list-group-item-action bg-barMain h5 mb-0 text-center">推薦區
-                </a>
+
+              <li @click="getSorted('recommended')" class="list-group-item h6 mb-0 text-center"
+                v-bind:class="{ active: sortedProduct== 'recommended' }">
+                推薦區
               </li>
-              <li>
-                <a @click="getSorted('rare')" v-bind:class="{ active: sortedProduct== 'rare' }"
-                  class="list-group-item list-group-item-action bg-barMain h5 mb-0 text-center">珍稀區
-                </a>
+
+              <li @click="getSorted('rare')" class="list-group-item h6 mb-0 text-center"
+                v-bind:class="{ active: sortedProduct== 'rare' }">
+                珍稀區
               </li>
-            </ul>
+
+            </div>
+
+            <!-- <div class="list-group">
+              <button type="button" class="list-group-item list-group-item-action active">
+                Cras justo odio
+              </button>
+              <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
+              <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
+              <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
+              <button type="button" class="list-group-item list-group-item-action" disabled>Vestibulum at eros</button>
+            </div> -->
+
           </div>
 
-        </div>
 
-        <!-- 一個卡片、產品欄位；使用v-for渲染所有產品 -->
-        <div class="col-md-10">
 
-          <div class="row">
-            <div class="col-md-4 mb-3 box-shadow" v-for="item in filterProducts" :key="item.id">
-              <div class="card border shadow-sm">
-                <div @click.prevent="toProductDetail(item.id)" class="bg-cover" style="height: 180px;cursor:pointer"
-                  :style="{backgroundImage: `url(${item.imageUrl})`}">
-                </div>
-                <div class="card-body">
-                  <span class="badge badge-secondary float-right ml-2">{{ item.category }}</span>
-                  <h6 class="card-title" style="height:50px">
-                    <a @click.prevent="toProductDetail(item.id)" class="title_Link">{{item.title }}</a>
-                  </h6>
-                  <p class="card-text">{{ item.description }}</p>
-                  <div class="d-flex justify-content-end align-items-baseline">
-                    <!-- <div class="h6" v-if="!item.price">{{ item.origin_price | currency}} 元</div>
-                    <del class="h6" v-if="item.price">{{ item.origin_price | currency}} 元</del> -->
-                    <div class="h5 text-success" v-if="item.price">{{ item.price | currency}} 元</div>
+          <!-- 一個卡片、產品欄位；使用v-for渲染所有產品 -->
+          <div class="col-md-10">
+
+            <div class="row">
+              <div class="col-md-4 mb-5" v-for="item in filterProducts" :key="item.id">
+                <div class="card border-0 box-shadow" style="overflow: hidden;">
+                  <div @click.prevent="toProductDetail(item.id)" class="wine_photo bg-cover"
+                    :style="{backgroundImage: `url(${item.imageUrl})`}">
                   </div>
-                </div>
-                <div class="card-footer d-flex">
-                  <button type="button" class="btn btn-outline-barMain btn-sm" @click="getSingleProduct(item.id)">
-                    <i class="fas fa-spinner fa-spin" v-if="status.loadingItem==item.id"></i>
-                    查看更多
-                  </button>
-                  <button type="button" class="btn btn-outline-danger btn-sm ml-auto" @click="addtoCart(item.id)">
-                    <i class="fas fa-spinner fa-spin" v-if="status.loadingItem==item.id"></i>
-                    加到購物車
-                  </button>
+                  <div class="card-body">
+                    <span class="badge badge-secondary float-right ml-2">{{ item.category }}</span>
+                    <h6 class="card-title" style="height:30px">
+                      <a @click.prevent="toProductDetail(item.id)" class="title_Link">{{item.title }}</a>
+                    </h6>
+                    <p class="card-text mb-0">{{ item.description }}</p>
+                    <div class="d-flex justify-content-end align-items-baseline">
+                      <!-- <div class="h6" v-if="!item.price">{{ item.origin_price | currency}} 元</div>
+                    <del class="h6" v-if="item.price">{{ item.origin_price | currency}} 元</del> -->
+                      <div class="h6 text-success" v-if="item.price">{{ item.price | currency}} 元</div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-end p-3">
+                    <button type="button" class="btn btn-outline-barMain btn-sm wine_btn" @click="getSingleProduct(item.id)">
+                      <i class="fas fa-spinner fa-spin" v-if="status.loadingItem==item.id"></i>
+                      <i class="fas fa-info-circle"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-barMain btn-sm mx-1 wine_btn" @click="addtoCart(item.id)">
+                      <i class="fas fa-spinner fa-spin" v-if="status.loadingItem==item.id"></i>
+                      <i class="fas fa-cart-plus"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
+
           </div>
 
         </div>
-
       </div>
-    </div>
+    </section>
 
     <!-- "查看更多"的Modal -->
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -125,7 +140,7 @@
             <div class="d-flex justify-content-between align-items-baseline">
               <div class="h4" v-if="!product.price">{{ product.origin_price }} 元</div>
               <del class="h6" v-if="product.price">原價 {{ product.origin_price }} 元</del>
-              <div class="h4" v-if="product.price">現在只要 {{ product.price }} 元</div>
+              <div class="h4" v-if="product.price">現在只要 {{ product.price}}元</div>
             </div>
             <select name="qty" class="form-control mt-3" v-model="product.Qty">
               <option value="0" disabled selected>請選擇數量</option>
@@ -134,7 +149,7 @@
           </div>
           <div class="modal-footer">
             <div class="text-muted text-nowrap mr-3">
-              小計 <strong>{{ product.Qty * product.price }}</strong> 元
+              小計 <strong>{{ product.Qty}} * {{product.price }} = {{ product.Qty * product.price }}</strong> 元
             </div>
             <button type="button" class="btn btn-sm btn-light" @click="addtoCart(product.id, product.Qty)">
               <i class="fas fa-spinner fa-spin" v-if="status.loadingItem==product.id"></i>
@@ -172,7 +187,7 @@
         sortedProduct: 'all', //控制篩選產品、預設為取所有產品
 
         products: {}, //所有產品data
-        product: {}, //單一筆產品data
+        product: { Qty: '1' }, //單一筆產品data
 
         isLoading: false, //全域loading控制
 
@@ -240,7 +255,9 @@
 
         this.$http.get(api).then((response) => {
           console.log('單一筆產品', response.data);
+
           vm.product = response.data.product;
+          vm.product.Qty = '1';
 
           vm.status.loadingItem = '' //讀取消失
           $('#productModal').modal('show');
@@ -300,7 +317,8 @@
       this.getProducts();
 
       // event bus的使用方法；、載入元件後；可將這段用於任何要顯示的地方。
-      this.$bus.$emit('message:push', 'HelloWorld', 'info')
+      this.$bus.$emit('message:push', 'HelloWorld', 'info');
+
     }
 
 

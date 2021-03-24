@@ -24,7 +24,7 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="row"><i class="fas fa-trash-alt"></i></th>
+                    <th scope="row"> 刪除</th>
                     <th>#</th>
                     <th>品名</th>
                     <th>數量</th>
@@ -34,7 +34,9 @@
                 <tbody>
                   <tr v-for="(item,index) in cartList.carts">
                     <td scope="row">
-                      <i class="fas fa-trash-alt"></i>
+                      <button class="btn btn-outline-danger btn-sm" @click="delCart(item)">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
                     </td>
 
                     <td>{{index+1}}</td>
@@ -87,7 +89,8 @@
                 </li>
 
                 <li class="nav-item">
-                  <router-link class="h5 mb-0 nav-link nav_text" to="/admin/products">登入</router-link>
+                  <router-link class="h5 mb-0 nav-link nav_text" to="/admin/products"><i class="fas fa-user"></i>
+                  </router-link>
                 </li>
               </ul>
             </div>
@@ -152,6 +155,18 @@
         this.$http.get(api).then((response) => {
           vm.cartList = response.data.data;
           console.log('購物車清單', response.data.data);
+        })
+      },
+      delCart(cartItem) {
+        const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${cartItem.id}`;
+        const vm = this;
+
+        this.$http.delete(api).then((response) => {
+
+          if (response.data.success) {
+            this.getCart();
+            this.$bus.$emit('message:push', '已刪除', 'danger')
+          }
         })
       },
 
