@@ -1,6 +1,11 @@
 <template>
     <div class="hello bg-light">
 
+
+        <!-- 讀取效果元件 -->
+        <loading :active.sync="isLoading">
+        </loading>
+
         <!-- 首頁NavBar元件 -->
         <div class="sticky-top">
             <Index_Navbar></Index_Navbar>
@@ -30,7 +35,6 @@
                                 <p class="h6 p-1">一段動人的旋律</p>
                             </div>
 
-
                             <hr>
 
                             <p class="h4 p-1 mb-0 d-none d-md-block">這就是生活</p>
@@ -48,7 +52,12 @@
         <section class="mb-5">
             <div class="container">
 
+<<<<<<< HEAD
                 <h3 class="text-barMain font-weight-bold">福屋區</h3>
+=======
+                <h3 class="text-barMain font-weight-bold">服務專區</h3>
+
+>>>>>>> f9ec0eacee7cf803946373872283635aead9c670
                 <hr>
 
                 <div class="row no-gutters justify-content-between">
@@ -88,7 +97,7 @@
             </div>
         </section>
 
-        <!-- News -->
+        <!-- 最新消息News -->
         <section class="mb-5">
             <div class="container">
                 <div class="row">
@@ -136,43 +145,43 @@
             <div class="container p-3">
 
                 <div class="row justify-content-center">
-                    <h3 class="text-barMain font-weight-bold p-3">本週專欄</h3>
+                    <h3 class="text-light font-weight-bold p-3">本週專欄</h3>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4 paper_photo bg-cover" style="min-height: 200px">
+                    <div class="col-md-3 paper_photo bg-cover" style="min-height: 200px">
 
                     </div>
 
-                    <div class="col-md-8">
+                    <div class="col-md-9">
 
 
-                        <h5 class="text-barMain font-weight-bold p-3">你知道嗎? 威士忌投資成長驚人，十年增值六倍 威士忌投資成長驚人!</h5>
+                        <h5 class="text-light font-weight-bold p-3">你知道嗎? 威士忌投資成長驚人，十年增值六倍 威士忌投資成長驚人!</h5>
 
-                        <p class="text-barMain px-3">
+                        <p class="text-light px-3">
                             根據英國萊坊於2019年3月公布的奢侈品投資指數(Knight Frank Luxury Investment Index,KFLII)，
                             在富豪階層眾多投資標的中，珍稀威士忌是潛在回報最高的奢侈品資產，
                             其價值在過去一年增長了40%，更在過去十年增長了582%，漲幅將近6倍！遠遠高於位居第二名的老爺車，一舉成為投資人財富加值的新興投資工具。
                         </p>
 
 
-                        <h5 class="text-barMain font-weight-bold p-3">投資珍稀威士忌要素</h5>
+                        <h5 class="text-white font-weight-bold p-3">投資珍稀威士忌要素</h5>
                         <ul>
-                            <li class="p-1">
-                                <span class="font-weight-bold">知名品牌:</span>
+                            <li class="p-1 text-light">
+                                <span class="font-weight-bold text-light">知名品牌:</span>
                                 <p>選擇知名酒廠推出的酒款，大型酒廠品質通常較為穩定，且更容易擁有死忠的固定藏家。</p>
 
                             </li>
-                            <li class="p-1">
-                                <span class="font-weight-bold">稀有性:</span>
+                            <li class="p-1 text-light">
+                                <span class="font-weight-bold text-light">稀有性:</span>
                                 <p>年份越高的威士忌越少見，可選擇陳桶年份為25年以上，每批產量低於4,000瓶更好，而限量版的威士忌更是藏家追逐的標的。</p>
                             </li>
-                            <li class="p-1">
-                                <span class="font-weight-bold">口感佳:</span>
+                            <li class="p-1 text-light">
+                                <span class="font-weight-bold text-light">口感佳:</span>
                                 <p>頂級藏家蒐羅後，總有開瓶品酩的一天，好喝的威士忌絕對是投資一大重點，國內外知名品酒人評論是參考重點。</p>
                             </li>
-                            <li class="p-1">
-                                <span class="font-weight-bold">故事性:</span>
+                            <li class="p-1 text-light">
+                                <span class="font-weight-bold text-light">故事性:</span>
                                 <p>酒款如具歷史意義或話題性的，更能展現其獨特性，也容易有較佳的市場表現。</p>
                             </li>
                         </ul>
@@ -188,16 +197,14 @@
             <div class="container d-md-none">
                 <div
                     class="row justify-content-center flex-column align-items-center h3 py-3 text-barMain font-weight-bold">
-                    <div>想喝酒...</div>
-                    <div>是不需要理由的</div>
+                    <div>本周推薦</div>
                 </div>
             </div>
 
             <div class="container d-flex justify-content-center">
                 <div
                     class="row flex-column align-items-center h3 writting-vertical d-none d-md-block text-barMain font-weight-bold">
-                    <div>想喝酒...</div>
-                    <div>是不需要理由的</div>
+                    <div>本周推薦</div>
                 </div>
             </div>
         </section>
@@ -273,24 +280,31 @@
             </div>
         </section>
 
-        <!-- Footer元件；更改為由全域插入-->
-        <!--<Index_Footer/>-->
+        <!-- Footer元件-->
+        <Index_Footer/>
 
     </div>
 </template>
 
 <script>
+
     import Index_Navbar from './Index_Navbar';
-    // import Index_Footer from './Index_Footer';
+    import Index_Footer from './Index_Footer';
     import Alert from './AlertMessage';// Alert Message
 
     export default {
         name: 'index',
         components: {
             Index_Navbar,
-            // Index_Footer,
+            Index_Footer,
             Alert
         },
+        data() {
+            return {
+                isLoading: false, //全域loading控制
+            }
+        },
+
         methods: {
             // 登出
             signout() {
@@ -308,6 +322,9 @@
                 const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
                 const vm = this;
 
+                // 讀取出現
+                vm.isLoading = true;
+
                 // 加入購物車所需丟入的資料結構。
                 const addingItem = {
                     product_id: id,
@@ -317,39 +334,35 @@
                 this.$http.post(api, { data: addingItem }).then((response) => {
                     console.log(response.data);
 
-                    // 註冊event bus事件、並於Navbar觸發
+
+                    // 註冊event bus事件、在此頁面點擊、並NavBar接收與觸發。
                     vm.$bus.$emit('shopCart:update');
 
-                    $('#productModal').modal('hide')
+                    // Alert提示訊息彈出
                     this.$bus.$emit('message:push', '已加入購物車', 'success')
+
+
+                    //關掉modal、首頁用不到。 
+                    // $('#productModal').modal('hide')
+
+                    // 讀取消失
+                    vm.isLoading = false;
                 })
             },
-
-            // 取購物車列表；首頁不需要使用到。
-            // getCart() {
-            //     const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
-            //     const vm = this;
-
-            //     this.$http.get(api).then((response) => {
-            //         vm.cartList = response.data.data;
-            //         console.log('購物車清單', response.data.data);
-            //     })
-            // },
-
-
-        },
-
-        created() {
-
         },
     }
 
 </script>
 
 
+
 <style lang="scss">
     .index_jumbo_image {
+<<<<<<< HEAD
         height: 780px;
+=======
+        height: 770px;
+>>>>>>> f9ec0eacee7cf803946373872283635aead9c670
         background-image: url('../assets/image/index_jumbo.jpg');
 
     }

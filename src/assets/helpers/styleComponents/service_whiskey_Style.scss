@@ -25,15 +25,21 @@ $barSecond: #00587A;
   }
 
 
-
   .wine_photo{
     height: 200px;
     cursor:pointer;
     transition-duration: 0.5s;
   }
+
+  // 產品縮放效果
   .wine_photo:hover{
     transform: scale(1.2);
   }
+
+  
+
+
+  
 
 
 .wine_btn{

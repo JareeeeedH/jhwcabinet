@@ -1,15 +1,9 @@
 <template>
   <div class="hello bg-light">
 
-    <!--  舊有的爛方法 -->
-    <!-- 在此插入Navbar；並用 props讓Navbar元件接index的資料 -->
-    <!-- <Index_Navbar :shoppingList='cartList'></Index_Navbar> -->
-
-
     <div class="sticky-top">
       <Index_Navbar></Index_Navbar>
     </div>
-
 
     <!-- Alert元件 -->
     <Alert />
@@ -33,7 +27,6 @@
         <div class="row">
 
           <!-- 產品服務頁面；左邊導覽欄位 -->
-
           <div class="col-md-2 mb-2 ">
 
             <div class="sticky-top list-group" style="top:80px;">
@@ -61,47 +54,40 @@
 
             </div>
 
-            <!-- <div class="list-group">
-              <button type="button" class="list-group-item list-group-item-action active">
-                Cras justo odio
-              </button>
-              <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
-              <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
-              <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-              <button type="button" class="list-group-item list-group-item-action" disabled>Vestibulum at eros</button>
-            </div> -->
-
           </div>
 
-
-
-          <!-- 一個卡片、產品欄位；使用v-for渲染所有產品 -->
+          <!-- 一個卡片、產品欄位；使用v-for迴圈渲染所有產品 -->
           <div class="col-md-10">
 
             <div class="row">
               <div class="col-md-4 mb-5" v-for="item in filterProducts" :key="item.id">
                 <div class="card border-0 box-shadow" style="overflow: hidden;">
-                  <div @click.prevent="toProductDetail(item.id)" class="wine_photo bg-cover"
+
+                  <div @click.prevent="toProductDetail(item.id)" class="wine_photo bg-cover blackWindow"
                     :style="{backgroundImage: `url(${item.imageUrl})`}">
                   </div>
+
                   <div class="card-body">
+
                     <span class="badge badge-secondary float-right ml-2">{{ item.category }}</span>
                     <h6 class="card-title" style="height:30px">
                       <a @click.prevent="toProductDetail(item.id)" class="title_Link">{{item.title }}</a>
                     </h6>
-                    <p class="card-text mb-0">{{ item.description }}</p>
+                    <p class="card-text mb-0" style='height: 35px'>{{ item.description }}</p>
                     <div class="d-flex justify-content-end align-items-baseline">
-                      <!-- <div class="h6" v-if="!item.price">{{ item.origin_price | currency}} 元</div>
-                    <del class="h6" v-if="item.price">{{ item.origin_price | currency}} 元</del> -->
                       <div class="h6 text-success" v-if="item.price">{{ item.price | currency}} 元</div>
                     </div>
+
                   </div>
+
                   <div class="d-flex justify-content-end p-3">
-                    <button type="button" class="btn btn-outline-barMain btn-sm wine_btn" @click="getSingleProduct(item.id)">
+                    <button type="button" class="btn btn-outline-barMain btn-sm wine_btn"
+                      @click="getSingleProduct(item.id)">
                       <i class="fas fa-spinner fa-spin" v-if="status.loadingItem==item.id"></i>
                       <i class="fas fa-info-circle"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-barMain btn-sm mx-1 wine_btn" @click="addtoCart(item.id)">
+                    <button type="button" class="btn btn-outline-barMain btn-sm mx-1 wine_btn"
+                      @click="addtoCart(item.id)">
                       <i class="fas fa-spinner fa-spin" v-if="status.loadingItem==item.id"></i>
                       <i class="fas fa-cart-plus"></i>
                     </button>
@@ -138,9 +124,8 @@
               <footer class="blockquote-footer text-right">{{ product.description }}</footer>
             </blockquote>
             <div class="d-flex justify-content-between align-items-baseline">
-              <div class="h4" v-if="!product.price">{{ product.origin_price }} 元</div>
-              <del class="h6" v-if="product.price">原價 {{ product.origin_price }} 元</del>
-              <div class="h4" v-if="product.price">現在只要 {{ product.price}}元</div>
+              <del class="h6" v-if="product.origin_price > product.price">原價 {{ product.origin_price |currency}} 元</del>
+              <div class="h4" v-if="product.price">現在只要 {{ product.price |currency}}元</div>
             </div>
             <select name="qty" class="form-control mt-3" v-model="product.Qty">
               <option value="0" disabled selected>請選擇數量</option>
@@ -149,9 +134,10 @@
           </div>
           <div class="modal-footer">
             <div class="text-muted text-nowrap mr-3">
-              小計 <strong>{{ product.Qty}} * {{product.price }} = {{ product.Qty * product.price }}</strong> 元
+              小計 <strong>{{ product.Qty}} * {{product.price |currency}} = {{ product.Qty * product.price |currency
+                }}</strong> 元
             </div>
-            <button type="button" class="btn btn-sm btn-light" @click="addtoCart(product.id, product.Qty)">
+            <button type="button" class="btn btn-light btn-outline-barMain btn-sm" @click="addtoCart(product.id, product.Qty)">
               <i class="fas fa-spinner fa-spin" v-if="status.loadingItem==product.id"></i>
               加到購物車
             </button>
@@ -160,9 +146,8 @@
       </div>>
     </div>
 
-    <!-- Footer更改為全域插入 -->
-    <!-- <Index_Footer /> -->
-
+    <!-- Footer -->
+    <Index_Footer />
 
   </div>
 
@@ -170,14 +155,14 @@
 
 <script>
   import Index_Navbar from '../Index_Navbar';
-  // import Index_Footer from '../Index_Footer';
+  import Index_Footer from '../Index_Footer';
 
   import Alert from '../AlertMessage'; //Alert元件
 
   export default {
     components: {
       Index_Navbar,
-      // Index_Footer,
+      Index_Footer,
       Alert,
     },
 
@@ -203,7 +188,8 @@
         var vm = this;
 
         if (vm.sortedProduct == 'all') {
-          return vm.products
+          return vm.products;
+
         }
 
         if (vm.sortedProduct == 'normal') {
@@ -296,20 +282,12 @@
         })
 
       },
-      // 取得購物車清單；以 event Bus執 Navbar元件的取得清單資料了。
-      // getCart() {
-      //   const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
-      //   const vm = this;
-
-      //   this.$http.get(api).then((response) => {
-      //     vm.cartList = response.data.data;
-      //     console.log('購物車清單', response.data.data);
-      //   })
-      // },
 
       // 點擊、控制分類、套用到 filter
       getSorted(sort) {
+
         this.sortedProduct = `${sort}`;
+
       },
     },
 

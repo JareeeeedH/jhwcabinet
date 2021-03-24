@@ -276,13 +276,7 @@
                     <span class="text-success h6" v-if="item.coupon">優惠價: {{item.final_total | currency}} </span>
                   </div>
                 </div>
-
-                <!-- <div class="col-2 py-3">
-                  <div class="d-flex">
-                    <span class="text-success h6" v-if="item.coupon">優惠價: {{item.final_total | currency}} </span>
-                    <span>{{item.total | currency}} </span>
-                  </div>
-                </div> -->
+                
               </div>
               <div class="p-2 d-flex justify-content-end align-items-center h3">
                 <span>
